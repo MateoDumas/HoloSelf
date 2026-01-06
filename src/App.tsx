@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import ProductPage from './pages/Product/ProductPage'
 import Favorites from './pages/Favorites'
 import Cart from './pages/Cart'
+import History from './pages/History'
 import { useThemeStore } from './store/useThemeStore'
 
 // Base path para GitHub Pages (debe coincidir con el nombre del repositorio)
@@ -23,6 +24,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </BrowserRouter>
   )

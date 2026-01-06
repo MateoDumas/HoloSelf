@@ -35,8 +35,21 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   const maxPrice = Math.max(...prices, 1000)
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6 border border-gray-200 dark:border-gray-700 sticky top-4">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+        <svg
+          className="w-5 h-5 text-primary-600 dark:text-primary-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+          />
+        </svg>
         Filtros
       </h3>
 

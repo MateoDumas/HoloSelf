@@ -8,6 +8,7 @@ export interface ViewerProps {
   autoRotate?: boolean
   enableAR?: boolean
   className?: string
+  onModelUrlChange?: (url: string) => void
 }
 
 const Viewer: React.FC<ViewerProps> = ({

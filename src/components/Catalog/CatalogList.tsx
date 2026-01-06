@@ -4,6 +4,7 @@ import { useSearchAndFilter } from '@/hooks/useSearchAndFilter'
 import ModelCard from './ModelCard'
 import SearchBar from '@/components/Search/SearchBar'
 import FilterPanel from '@/components/Filters/FilterPanel'
+import SkeletonLoader from '@/components/UI/SkeletonLoader'
 
 interface CatalogListProps {
   page?: number
@@ -35,30 +36,10 @@ const CatalogList: React.FC<CatalogListProps> = ({
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <svg
-            className="animate-spin h-12 w-12 text-primary-600 mx-auto mb-4"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
-          <p className="text-gray-600">Cargando catálogo...</p>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {[...Array(8)].map((_, i) => (
+          <SkeletonLoader key={i} type="card" />
+        ))}
       </div>
     )
   }

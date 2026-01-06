@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           value={query}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full px-4 py-2 pl-10 pr-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          className="w-full px-4 py-3 pl-10 pr-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-200 shadow-sm hover:shadow-md"
         />
         <svg
           className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"

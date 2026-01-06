@@ -4,6 +4,8 @@ import { useModel } from '@/hooks/useModels'
 import Viewer from '@/components/Viewer'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
+import VariantSelector from '@/components/Viewer/VariantSelector'
+import SimilarProducts from '@/components/Recommendations/SimilarProducts'
 import { useHistoryStore } from '@/store/useHistoryStore'
 import { useCartStore } from '@/store/useCartStore'
 
@@ -11,6 +13,8 @@ const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const { data: model, isLoading, error } = useModel(id || '')
   const [autoRotate, setAutoRotate] = useState(false)
+  const [selectedVariant, setSelectedVariant] = useState<string | undefined>()
+  const [currentModelUrl, setCurrentModelUrl] = useState<string>('')
   const { addViewedProduct } = useHistoryStore()
   const { addItem } = useCartStore()
 
@@ -19,6 +23,17 @@ const ProductPage: React.FC = () => {
       addViewedProduct(id)
     }
   }, [id, addViewedProduct])
+
+  useEffect(() => {
+    if (model) {
+      setCurrentModelUrl(model.glb_url)
+    }
+  }, [model])
+
+  const handleVariantChange = (variantId: string, glbUrl: string) => {
+    setSelectedVariant(variantId)
+    setCurrentModelUrl(glbUrl)
+  }
 
   const handleAddToCart = () => {
     if (model) {
@@ -110,7 +125,7 @@ const ProductPage: React.FC = () => {
             </div>
             <div className="aspect-square relative">
               <Viewer
-                modelUrl={model.glb_url}
+                modelUrl={currentModelUrl || model.glb_url}
                 autoRotate={autoRotate}
                 enableAR={true}
                 className="w-full h-full"
@@ -138,7 +153,7 @@ const ProductPage: React.FC = () => {
           </div>
 
           {/* Información del producto */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 border border-gray-200 dark:border-gray-700">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               {model.title}
             </h1>
@@ -175,23 +190,11 @@ const ProductPage: React.FC = () => {
               </div>
             )}
 
-            {model.meta?.variants && model.meta.variants.length > 0 && (
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                  Variantes
-                </h2>
-                <div className="space-y-2">
-                  {model.meta.variants.map((variant) => (
-                    <div
-                      key={variant.id}
-                      className="p-3 border rounded-lg hover:bg-gray-50"
-                    >
-                      <p className="font-medium">{variant.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <VariantSelector
+              model={model}
+              selectedVariant={selectedVariant}
+              onVariantChange={handleVariantChange}
+            />
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
               {model.price && (
@@ -203,13 +206,16 @@ const ProductPage: React.FC = () => {
                 </button>
               )}
               <ARButton
-                modelUrl={model.glb_url}
+                modelUrl={currentModelUrl || model.glb_url}
                 modelTitle={model.title}
                 className="w-full"
               />
             </div>
           </div>
         </div>
+
+        {/* Productos similares */}
+        <SimilarProducts currentModel={model} />
       </main>
     </div>
   )

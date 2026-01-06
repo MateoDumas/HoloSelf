@@ -25,17 +25,17 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   }
 
   return (
-    <div className="card relative">
-      <div className="absolute top-2 right-2 z-10">
+    <div className="card relative group hover:scale-105 transition-transform duration-300">
+      <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
         <FavoriteButton productId={model.id} />
       </div>
       <Link to={`/product/${model.id}`}>
-        <div className="relative aspect-square bg-gray-100 dark:bg-gray-700 overflow-hidden">
+        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 overflow-hidden">
           {model.thumbnail ? (
             <img
               src={model.thumbnail}
               alt={model.title}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">

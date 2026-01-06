@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useFavoritesStore } from '@/store/useFavoritesStore'
+import { useHistoryStore } from '@/store/useHistoryStore'
 import { useModels } from '@/hooks/useModels'
 import ModelCard from '@/components/Catalog/ModelCard'
 import ThemeToggle from '@/components/ThemeToggle'
 import CartButton from '@/components/Cart/CartButton'
-import CompareButton from '@/components/Compare/CompareButton'
 
-const Favorites: React.FC = () => {
-  const { favorites } = useFavoritesStore()
+const History: React.FC = () => {
+  const { viewedProducts, clearHistory, getRecentProducts } = useHistoryStore()
   const { data: allModels } = useModels(1, 100)
 
-  const favoriteModels = allModels?.models.filter((m) =>
-    favorites.includes(m.id)
+  const recentProductIds = getRecentProducts(20)
+  const recentModels = allModels?.models.filter((m) =>
+    recentProductIds.includes(m.id)
   ) || []
 
   return (
@@ -41,14 +41,21 @@ const Favorites: React.FC = () => {
                 Volver al catálogo
               </Link>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-                Mis Favoritos
+                Historial de Vistas
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
-                {favoriteModels.length} {favoriteModels.length === 1 ? 'producto' : 'productos'} guardados
+                {recentModels.length} {recentModels.length === 1 ? 'producto' : 'productos'} visitados
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <CompareButton models={favoriteModels} />
+              {viewedProducts.length > 0 && (
+                <button
+                  onClick={clearHistory}
+                  className="text-sm text-red-600 dark:text-red-400 hover:underline"
+                >
+                  Limpiar historial
+                </button>
+              )}
               <CartButton />
               <ThemeToggle />
             </div>
@@ -57,7 +64,7 @@ const Favorites: React.FC = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {favoriteModels.length === 0 ? (
+        {recentModels.length === 0 ? (
           <div className="text-center py-12">
             <svg
               className="w-24 h-24 text-gray-400 dark:text-gray-600 mx-auto mb-4"
@@ -69,34 +76,26 @@ const Favorites: React.FC = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
             <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">
-              No tienes productos favoritos aún
+              No has visitado ningún producto aún
             </p>
             <Link to="/" className="btn-primary inline-block">
               Explorar Catálogo
             </Link>
           </div>
         ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {favoriteModels.map((model, index) => (
-                <div
-                  key={model.id}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <ModelCard model={model} />
-                </div>
-              ))}
-            </div>
-          </>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {recentModels.map((model) => (
+              <ModelCard key={model.id} model={model} />
+            ))}
+          </div>
         )}
       </main>
     </div>
   )
 }
 
-export default Favorites
+export default History
