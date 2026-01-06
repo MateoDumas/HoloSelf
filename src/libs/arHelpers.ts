@@ -108,6 +108,10 @@ export function getARQuickLookURL(modelUrl: string): string {
  * 1. URL HTTPS accesible públicamente
  * 2. Elemento <a> con rel="ar"
  * 3. El archivo debe ser .usdz o .glb/.gltf
+ * 4. El servidor debe servir el archivo con Content-Type correcto
+ * 
+ * NOTA: raw.githubusercontent.com no sirve archivos con los headers correctos
+ * para AR Quick Look. Se recomienda usar model-viewer o un proxy/CDN.
  */
 export function activateARQuickLook(modelUrl: string): void {
   if (typeof document === 'undefined' || typeof window === 'undefined') return
@@ -119,6 +123,14 @@ export function activateARQuickLook(modelUrl: string): void {
     console.error('AR Quick Look requiere HTTPS. URL proporcionada:', url)
     alert('El modelo debe estar disponible a través de HTTPS para usar AR en iOS.')
     return
+  }
+
+  // Si la URL es de raw.githubusercontent.com, advertir que puede no funcionar
+  if (url.includes('raw.githubusercontent.com')) {
+    console.warn(
+      'raw.githubusercontent.com puede no servir archivos GLB con los headers correctos para AR Quick Look. ' +
+      'Considera usar un CDN o servicio de hosting que soporte AR.'
+    )
   }
 
   // Crear un elemento <a> temporal con rel="ar"
@@ -145,8 +157,13 @@ export function activateARQuickLook(modelUrl: string): void {
     link.click()
   } catch (error) {
     console.error('Error al activar AR Quick Look:', error)
-    // Fallback: intentar abrir directamente
-    window.open(url, '_blank')
+    // Fallback: intentar abrir directamente (puede no funcionar en iOS)
+    try {
+      window.open(url, '_blank')
+    } catch (e) {
+      console.error('No se pudo abrir AR:', e)
+      alert('No se pudo iniciar AR. Asegúrate de que el archivo esté disponible públicamente con HTTPS.')
+    }
   }
   
   // Remover después de un breve delay

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useXR } from '@/hooks/useXR'
 import {
   getARQuickLookURL,
@@ -21,6 +21,7 @@ const ARButton: React.FC<ARButtonProps> = ({
 }) => {
   const { arMethod, isSupported, startARSession } = useXR()
   const [isLoading, setIsLoading] = useState(false)
+  const [modelViewerId] = useState(() => `model-viewer-${Math.random().toString(36).substr(2, 9)}`)
   const modelViewerRef = useRef<any>(null)
 
   const handleARClick = async () => {
@@ -34,21 +35,59 @@ const ARButton: React.FC<ARButtonProps> = ({
     try {
       // Priorizar iOS AR Quick Look si está disponible
       if (isIOSARAvailable()) {
-        // Intentar primero con el método rel="ar"
-        activateARQuickLook(modelUrl)
+        // Para iOS, usar model-viewer que maneja mejor los headers y el formato
+        // Crear un model-viewer oculto si no existe
+        let modelViewer = document.getElementById(modelViewerId) as any
         
-        // También intentar con model-viewer como fallback
-        // Esperar un momento para que model-viewer se cargue si está disponible
-        setTimeout(() => {
-          const modelViewer = document.querySelector('model-viewer')
-          if (modelViewer && typeof (modelViewer as any).activateAR === 'function') {
-            try {
-              (modelViewer as any).activateAR()
-            } catch (e) {
-              console.warn('Error con model-viewer AR:', e)
+        if (!modelViewer) {
+          // Crear elemento model-viewer dinámicamente
+          modelViewer = document.createElement('model-viewer')
+          modelViewer.id = modelViewerId
+          modelViewer.src = modelUrl
+          modelViewer.alt = modelTitle || 'Modelo 3D'
+          modelViewer.setAttribute('ar', '')
+          modelViewer.setAttribute('ar-modes', 'quick-look')
+          modelViewer.setAttribute('camera-controls', '')
+          modelViewer.style.position = 'fixed'
+          modelViewer.style.top = '-9999px'
+          modelViewer.style.left = '-9999px'
+          modelViewer.style.width = '1px'
+          modelViewer.style.height = '1px'
+          modelViewer.style.opacity = '0'
+          modelViewer.style.pointerEvents = 'none'
+          document.body.appendChild(modelViewer)
+        } else {
+          // Actualizar src si ya existe
+          modelViewer.src = modelUrl
+        }
+        
+        // Esperar a que model-viewer esté listo y activar AR
+        const activateAR = () => {
+          try {
+            if (modelViewer && typeof modelViewer.activateAR === 'function') {
+              modelViewer.activateAR()
+            } else {
+              // Fallback al método rel="ar" si model-viewer no está disponible
+              activateARQuickLook(modelUrl)
             }
+          } catch (error) {
+            console.warn('Error activando AR con model-viewer, usando fallback:', error)
+            activateARQuickLook(modelUrl)
           }
-        }, 500)
+        }
+        
+        // Esperar a que el componente esté listo
+        if (modelViewer.loaded) {
+          activateAR()
+        } else {
+          modelViewer.addEventListener('load', activateAR, { once: true })
+          // Timeout de seguridad
+          setTimeout(() => {
+            if (!modelViewer.loaded) {
+              activateAR()
+            }
+          }, 2000)
+        }
         
         setIsLoading(false)
         return
