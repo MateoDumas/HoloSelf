@@ -52,7 +52,7 @@ const ARButton: React.FC<ARButtonProps> = ({
         // Fallback a model-viewer
         const modelViewer = document.querySelector('model-viewer')
         if (modelViewer) {
-          ;(modelViewer as any).activateAR()
+          (modelViewer as any).activateAR()
         }
       }
     } catch (error: any) {
