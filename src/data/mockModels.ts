@@ -9,11 +9,17 @@ export const mockModels: ModelMetadata[] = [
     thumbnail: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400',
     price: 299.99,
     meta: {
+      category: 'sillas',
+      tags: ['ergonómica', 'moderna', 'oficina'],
       dimensions: {
         width: 50,
         height: 100,
         depth: 50,
       },
+      variants: [
+        { id: 'v1', name: 'Negro', glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Chair/glTF-Binary/Chair.glb' },
+        { id: 'v2', name: 'Blanco', glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Chair/glTF-Binary/Chair.glb' },
+      ],
     },
   },
   {
@@ -24,6 +30,8 @@ export const mockModels: ModelMetadata[] = [
     thumbnail: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=400',
     price: 449.99,
     meta: {
+      category: 'mesas',
+      tags: ['madera', 'centro', 'sala'],
       dimensions: {
         width: 120,
         height: 45,
@@ -39,6 +47,8 @@ export const mockModels: ModelMetadata[] = [
     thumbnail: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400',
     price: 179.99,
     meta: {
+      category: 'iluminación',
+      tags: ['LED', 'minimalista', 'moderna'],
       dimensions: {
         width: 30,
         height: 160,
@@ -54,6 +64,8 @@ export const mockModels: ModelMetadata[] = [
     thumbnail: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400',
     price: 1299.99,
     meta: {
+      category: 'sofás',
+      tags: ['modular', 'premium', 'sala'],
       dimensions: {
         width: 240,
         height: 85,
@@ -81,6 +93,8 @@ export const mockModels: ModelMetadata[] = [
     thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400',
     price: 349.99,
     meta: {
+      category: 'estanterías',
+      tags: ['flotante', 'escandinavo', 'madera'],
       dimensions: {
         width: 100,
         height: 180,
@@ -96,6 +110,8 @@ export const mockModels: ModelMetadata[] = [
     thumbnail: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400',
     price: 899.99,
     meta: {
+      category: 'escritorios',
+      tags: ['ejecutivo', 'roble', 'oficina'],
       dimensions: {
         width: 160,
         height: 75,

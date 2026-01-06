@@ -2,16 +2,35 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ModelMetadata } from '@/hooks/useModels'
 import ARButton from '@/components/ARButton'
+import FavoriteButton from '@/components/Favorites/FavoriteButton'
+import { useCartStore } from '@/store/useCartStore'
 
 interface ModelCardProps {
   model: ModelMetadata
 }
 
 const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
+  const { addItem } = useCartStore()
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addItem({
+      id: model.id,
+      title: model.title,
+      price: model.price,
+      glb_url: model.glb_url,
+      thumbnail: model.thumbnail,
+    })
+  }
+
   return (
-    <div className="card">
+    <div className="card relative">
+      <div className="absolute top-2 right-2 z-10">
+        <FavoriteButton productId={model.id} />
+      </div>
       <Link to={`/product/${model.id}`}>
-        <div className="relative aspect-square bg-gray-100 overflow-hidden">
+        <div className="relative aspect-square bg-gray-100 dark:bg-gray-700 overflow-hidden">
           {model.thumbnail ? (
             <img
               src={model.thumbnail}
@@ -64,6 +83,14 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
           >
             Ver detalles
           </Link>
+          {model.price && (
+            <button
+              onClick={handleAddToCart}
+              className="btn-primary flex-1"
+            >
+              Agregar
+            </button>
+          )}
           <ARButton
             modelUrl={model.glb_url}
             modelTitle={model.title}

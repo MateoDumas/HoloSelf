@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useModels } from '@/hooks/useModels'
+import { useSearchAndFilter } from '@/hooks/useSearchAndFilter'
 import ModelCard from './ModelCard'
+import SearchBar from '@/components/Search/SearchBar'
+import FilterPanel from '@/components/Filters/FilterPanel'
 
 interface CatalogListProps {
   page?: number
@@ -12,6 +15,23 @@ const CatalogList: React.FC<CatalogListProps> = ({
   pageSize = 20,
 }) => {
   const { data, isLoading, error } = useModels(page, pageSize)
+  const [showFilters, setShowFilters] = useState(false)
+
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedCategory,
+    setSelectedCategory,
+    selectedTags,
+    toggleTag,
+    priceRange,
+    setPriceRange,
+    sortBy,
+    setSortBy,
+    filteredModels,
+  } = useSearchAndFilter({
+    models: data?.models || [],
+  })
 
   if (isLoading) {
     return (
@@ -66,21 +86,76 @@ const CatalogList: React.FC<CatalogListProps> = ({
     )
   }
 
+  const displayModels = searchQuery || selectedCategory || selectedTags.length > 0
+    ? filteredModels
+    : data?.models || []
+
   return (
     <div>
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">
-          Catálogo de Productos
-        </h2>
-        <p className="text-gray-600 mt-1">
-          {data.total} {data.total === 1 ? 'modelo' : 'modelos'} disponibles
-        </p>
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              Catálogo de Productos
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">
+              {displayModels.length} {displayModels.length === 1 ? 'modelo' : 'modelos'} disponibles
+            </p>
+          </div>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="btn-secondary"
+          >
+            {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
+          </button>
+        </div>
+
+        <div className="mb-4">
+          <SearchBar onSearch={setSearchQuery} />
+        </div>
+
+        <div className="mb-4 flex gap-2 items-center">
+          <label className="text-sm text-gray-600 dark:text-gray-400">Ordenar por:</label>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as any)}
+            className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          >
+            <option value="name">Nombre</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
+          </select>
+        </div>
       </div>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {data.models.map((model) => (
-          <ModelCard key={model.id} model={model} />
-        ))}
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {showFilters && (
+          <div className="lg:col-span-1">
+            <FilterPanel
+              models={data?.models || []}
+              selectedCategory={selectedCategory}
+              selectedTags={selectedTags}
+              priceRange={priceRange}
+              onCategoryChange={setSelectedCategory}
+              onTagToggle={toggleTag}
+              onPriceRangeChange={setPriceRange}
+            />
+          </div>
+        )}
+        <div className={showFilters ? 'lg:col-span-3' : 'lg:col-span-4'}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {displayModels.map((model) => (
+              <ModelCard key={model.id} model={model} />
+            ))}
+          </div>
+          {displayModels.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-600 dark:text-gray-400">
+                No se encontraron productos con los filtros seleccionados
+              </p>
+            </div>
+          )}
+        </div>
       </div>
       
       {/* Paginación básica - puedes mejorarla después */}

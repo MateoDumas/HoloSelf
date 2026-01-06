@@ -10,6 +10,8 @@ export interface ModelMetadata {
   thumbnail?: string
   price?: number
   meta?: {
+    category?: string
+    tags?: string[]
     dimensions?: {
       width: number
       height: number

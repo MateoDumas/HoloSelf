@@ -1,13 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useModel } from '@/hooks/useModels'
 import Viewer from '@/components/Viewer'
 import ARButton from '@/components/ARButton'
+import FavoriteButton from '@/components/Favorites/FavoriteButton'
+import { useHistoryStore } from '@/store/useHistoryStore'
+import { useCartStore } from '@/store/useCartStore'
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const { data: model, isLoading, error } = useModel(id || '')
   const [autoRotate, setAutoRotate] = useState(false)
+  const { addViewedProduct } = useHistoryStore()
+  const { addItem } = useCartStore()
+
+  useEffect(() => {
+    if (id) {
+      addViewedProduct(id)
+    }
+  }, [id, addViewedProduct])
+
+  const handleAddToCart = () => {
+    if (model) {
+      addItem({
+        id: model.id,
+        title: model.title,
+        price: model.price,
+        glb_url: model.glb_url,
+        thumbnail: model.thumbnail,
+      })
+    }
+  }
 
   if (isLoading) {
     return (
@@ -53,12 +76,12 @@ const ProductPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
             to="/"
-            className="text-primary-600 hover:text-primary-700 inline-flex items-center gap-2"
+            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 inline-flex items-center gap-2"
           >
             <svg
               className="w-5 h-5"
@@ -81,7 +104,10 @@ const ProductPage: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Viewer 3D */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+            <div className="absolute top-4 right-4 z-10">
+              <FavoriteButton productId={model.id} />
+            </div>
             <div className="aspect-square relative">
               <Viewer
                 modelUrl={model.glb_url}
@@ -92,7 +118,7 @@ const ProductPage: React.FC = () => {
             </div>
             
             {/* Controles del viewer */}
-            <div className="p-4 border-t bg-gray-50">
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
               <div className="flex gap-2">
                 <button
                   onClick={() => setAutoRotate(!autoRotate)}
@@ -112,17 +138,17 @@ const ProductPage: React.FC = () => {
           </div>
 
           {/* Información del producto */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               {model.title}
             </h1>
 
             {model.description && (
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                   Descripción
                 </h2>
-                <p className="text-gray-600">{model.description}</p>
+                <p className="text-gray-600 dark:text-gray-400">{model.description}</p>
               </div>
             )}
 
@@ -167,7 +193,15 @@ const ProductPage: React.FC = () => {
               </div>
             )}
 
-            <div className="mt-8 pt-6 border-t">
+            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
+              {model.price && (
+                <button
+                  onClick={handleAddToCart}
+                  className="btn-primary w-full"
+                >
+                  Agregar al Carrito - ${model.price.toLocaleString()}
+                </button>
+              )}
               <ARButton
                 modelUrl={model.glb_url}
                 modelTitle={model.title}
