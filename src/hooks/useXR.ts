@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import {
-  isWebXRAvailable,
   getAvailableARMethod,
   requestWebXRSession,
   type ARMethod,
