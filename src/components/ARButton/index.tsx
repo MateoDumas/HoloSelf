@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useXR } from '@/hooks/useXR'
 import {
   getARQuickLookURL,
   getSceneViewerURL,
   isIOSARAvailable,
   isAndroidARAvailable,
+  activateARQuickLook,
 } from '@/libs/arHelpers'
 
 interface ARButtonProps {
@@ -20,6 +21,7 @@ const ARButton: React.FC<ARButtonProps> = ({
 }) => {
   const { arMethod, isSupported, startARSession } = useXR()
   const [isLoading, setIsLoading] = useState(false)
+  const modelViewerRef = useRef<any>(null)
 
   const handleARClick = async () => {
     if (!isSupported) {
@@ -30,21 +32,38 @@ const ARButton: React.FC<ARButtonProps> = ({
     setIsLoading(true)
 
     try {
+      // Priorizar iOS AR Quick Look si está disponible
+      if (isIOSARAvailable()) {
+        // Intentar primero con el método rel="ar"
+        activateARQuickLook(modelUrl)
+        
+        // También intentar con model-viewer como fallback
+        // Esperar un momento para que model-viewer se cargue si está disponible
+        setTimeout(() => {
+          const modelViewer = document.querySelector('model-viewer')
+          if (modelViewer && typeof (modelViewer as any).activateAR === 'function') {
+            try {
+              (modelViewer as any).activateAR()
+            } catch (e) {
+              console.warn('Error con model-viewer AR:', e)
+            }
+          }
+        }, 500)
+        
+        setIsLoading(false)
+        return
+      }
+
       if (arMethod === 'webxr') {
         const session = await startARSession()
         if (!session) {
-          // Si WebXR no está disponible, intentar con model-viewer como fallback
-          if (isIOSARAvailable()) {
-            window.location.href = getARQuickLookURL(modelUrl)
-          } else if (isAndroidARAvailable()) {
+          // Si WebXR no está disponible, intentar con métodos nativos como fallback
+          if (isAndroidARAvailable()) {
             window.location.href = getSceneViewerURL(modelUrl, modelTitle)
           } else {
             alert('AR no está disponible en este dispositivo. Prueba en un dispositivo móvil con soporte AR.')
           }
         }
-      } else if (arMethod === 'ios-ar' || isIOSARAvailable()) {
-        // iOS AR Quick Look
-        window.location.href = getARQuickLookURL(modelUrl)
       } else if (arMethod === 'android-ar' || isAndroidARAvailable()) {
         // Android Scene Viewer
         window.location.href = getSceneViewerURL(modelUrl, modelTitle)
@@ -59,8 +78,8 @@ const ARButton: React.FC<ARButtonProps> = ({
       // Solo mostrar error si no es un error esperado
       if (error?.name !== 'NotSupportedError') {
         console.warn('Error iniciando AR:', error)
+        alert(`Error al iniciar AR: ${error.message || 'Error desconocido'}`)
       }
-      alert('No se pudo iniciar la experiencia AR. Prueba en un dispositivo móvil con soporte AR.')
     } finally {
       setIsLoading(false)
     }

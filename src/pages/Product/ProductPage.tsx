@@ -144,7 +144,7 @@ const ProductPage: React.FC = () => {
                   {autoRotate ? '⏸ Detener rotación' : '▶ Rotar automático'}
                 </button>
                 <ARButton
-                  modelUrl={model.glb_url}
+                  modelUrl={currentModelUrl || model.glb_url}
                   modelTitle={model.title}
                   className="flex-1"
                 />

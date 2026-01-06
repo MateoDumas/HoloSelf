@@ -82,9 +82,79 @@ export async function requestWebXRSession(
 
 /**
  * Genera URL para AR Quick Look (iOS)
+ * iOS AR Quick Look requiere que el archivo esté en HTTPS y sea accesible públicamente
+ * También puede usar un elemento <a> con rel="ar" o model-viewer
  */
 export function getARQuickLookURL(modelUrl: string): string {
-  return modelUrl
+  // Asegurar que la URL sea absoluta y use HTTPS
+  try {
+    const url = new URL(modelUrl)
+    // Si ya es una URL válida, retornarla
+    return url.href
+  } catch {
+    // Si es una URL relativa, intentar construirla
+    if (modelUrl.startsWith('http://') || modelUrl.startsWith('https://')) {
+      return modelUrl
+    }
+    // Si es relativa, necesitamos la URL base
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
+    return `${baseUrl}${modelUrl.startsWith('/') ? '' : '/'}${modelUrl}`
+  }
+}
+
+/**
+ * Activa AR Quick Look en iOS usando un elemento <a> temporal
+ * iOS AR Quick Look requiere:
+ * 1. URL HTTPS accesible públicamente
+ * 2. Elemento <a> con rel="ar"
+ * 3. El archivo debe ser .usdz o .glb/.gltf
+ */
+export function activateARQuickLook(modelUrl: string): void {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return
+
+  const url = getARQuickLookURL(modelUrl)
+  
+  // Verificar que la URL sea HTTPS (requerido por iOS)
+  if (!url.startsWith('https://')) {
+    console.error('AR Quick Look requiere HTTPS. URL proporcionada:', url)
+    alert('El modelo debe estar disponible a través de HTTPS para usar AR en iOS.')
+    return
+  }
+
+  // Crear un elemento <a> temporal con rel="ar"
+  // Este es el método correcto para iOS AR Quick Look
+  const link = document.createElement('a')
+  link.href = url
+  link.rel = 'ar'
+  link.setAttribute('data-ar', 'true')
+  
+  // Agregar atributos adicionales para mejor compatibilidad
+  link.setAttribute('target', '_blank')
+  
+  // Agregar al DOM temporalmente
+  link.style.position = 'fixed'
+  link.style.top = '-9999px'
+  link.style.left = '-9999px'
+  link.style.opacity = '0'
+  link.style.pointerEvents = 'none'
+  document.body.appendChild(link)
+  
+  // Hacer click programáticamente
+  // Nota: En iOS, esto debe ser iniciado por una acción del usuario
+  try {
+    link.click()
+  } catch (error) {
+    console.error('Error al activar AR Quick Look:', error)
+    // Fallback: intentar abrir directamente
+    window.open(url, '_blank')
+  }
+  
+  // Remover después de un breve delay
+  setTimeout(() => {
+    if (link.parentNode) {
+      document.body.removeChild(link)
+    }
+  }, 1000)
 }
 
 /**
