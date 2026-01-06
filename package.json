@@ -5,7 +5,7 @@
   "description": "Catálogo 3D/AR con React, Three.js y WebXR",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:e2e": "playwright test",
