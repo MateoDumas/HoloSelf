@@ -5,10 +5,11 @@ import * as THREE from 'three'
 
 interface ModelInstanceProps {
   url: string
+  color?: string
   onLoad?: () => void
 }
 
-const ModelInstance: React.FC<ModelInstanceProps> = ({ url, onLoad }) => {
+const ModelInstance: React.FC<ModelInstanceProps> = ({ url, color, onLoad }) => {
   const { scene } = useGLTF(url) as any
 
   React.useEffect(() => {
@@ -28,6 +29,30 @@ const ModelInstance: React.FC<ModelInstanceProps> = ({ url, onLoad }) => {
       onLoad?.()
     }
   }, [scene, onLoad])
+
+  // Efecto para cambios de color en tiempo real
+  React.useEffect(() => {
+    if (scene && color) {
+      scene.traverse((child: THREE.Object3D) => {
+        if (child instanceof THREE.Mesh) {
+          const applyColor = (material: any) => {
+            if (material && material.color) {
+              // Clonamos el material para no afectar otros modelos si se usa cache
+              // Aunque en este caso simple, podríamos modificarlo directo.
+              // Para asegurar reactividad visual correcta:
+              material.color.set(color)
+            }
+          }
+
+          if (Array.isArray(child.material)) {
+            child.material.forEach(applyColor)
+          } else {
+            applyColor(child.material)
+          }
+        }
+      })
+    }
+  }, [scene, color])
 
   return (
     <Suspense

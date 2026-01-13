@@ -5,7 +5,7 @@ import ModelCard from './ModelCard'
 import SearchBar from '@/components/Search/SearchBar'
 import FilterPanel from '@/components/Filters/FilterPanel'
 import ProductCardSkeleton from './ProductCardSkeleton'
-
+import CategoryPills from './CategoryPills'
 
 interface CatalogListProps {
   page?: number
@@ -34,6 +34,13 @@ const CatalogList: React.FC<CatalogListProps> = ({
   } = useSearchAndFilter({
     models: data?.models || [],
   })
+
+  // Calcular categorías disponibles
+  const categories = React.useMemo(() => {
+    if (!data?.models) return []
+    const cats = new Set(data.models.map((m) => m.meta?.category).filter(Boolean))
+    return Array.from(cats) as string[]
+  }, [data?.models])
 
   if (isLoading) {
     return (
@@ -92,8 +99,17 @@ const CatalogList: React.FC<CatalogListProps> = ({
           </button>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-6">
           <SearchBar onSearch={setSearchQuery} />
+        </div>
+
+        {/* Category Pills */}
+        <div className="mb-6">
+          <CategoryPills
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
         </div>
 
         <div className="mb-4 flex gap-2 items-center">
