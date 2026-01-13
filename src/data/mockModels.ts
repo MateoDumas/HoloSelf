@@ -6,7 +6,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Silla Moderna',
     description: 'Silla ergonómica de diseño moderno con soporte lumbar ajustable.',
     glb_url: 'https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Chair/glTF-Binary/Chair.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=400&auto=format&fit=crop',
     price: 299.99,
     meta: {
       category: 'sillas',
@@ -27,7 +27,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Mesa de Centro',
     description: 'Mesa de centro de madera maciza con acabado natural.',
     glb_url: 'https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Box/glTF-Binary/Box.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=400&auto=format&fit=crop',
     price: 449.99,
     meta: {
       category: 'mesas',
@@ -44,7 +44,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Lámpara de Pie',
     description: 'Lámpara de pie con diseño minimalista y luz LED regulable.',
     glb_url: 'https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Lantern/glTF-Binary/Lantern.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&auto=format&fit=crop',
     price: 179.99,
     meta: {
       category: 'iluminación',
@@ -90,7 +90,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Estantería Flotante',
     description: 'Estantería flotante de diseño escandinavo con 4 niveles.',
     glb_url: 'https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Box/glTF-Binary/Box.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&auto=format&fit=crop',
     price: 349.99,
     meta: {
       category: 'estanterías',
@@ -107,7 +107,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Escritorio Ejecutivo',
     description: 'Escritorio ejecutivo de roble con cajones laterales.',
     glb_url: 'https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Box/glTF-Binary/Box.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&auto=format&fit=crop',
     price: 899.99,
     meta: {
       category: 'escritorios',
