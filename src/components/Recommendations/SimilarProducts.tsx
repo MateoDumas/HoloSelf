@@ -2,6 +2,7 @@ import React from 'react'
 import { ModelMetadata } from '@/hooks/useModels'
 import { useModels } from '@/hooks/useModels'
 import ModelCard from '@/components/Catalog/ModelCard'
+import { useTranslation } from 'react-i18next'
 
 interface SimilarProductsProps {
   currentModel: ModelMetadata
@@ -13,6 +14,7 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
   limit = 4,
 }) => {
   const { data: allModels } = useModels(1, 100)
+  const { t } = useTranslation()
 
   if (!allModels) return null
 
@@ -20,7 +22,7 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
   const similarProducts = allModels.models
     .filter((model) => {
       if (model.id === currentModel.id) return false
-      
+
       // Misma categoría
       if (
         model.meta?.category &&
@@ -34,7 +36,7 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
       const currentTags = currentModel.meta?.tags || []
       const modelTags = model.meta?.tags || []
       const sharedTags = currentTags.filter((tag) => modelTags.includes(tag))
-      
+
       return sharedTags.length > 0
     })
     .slice(0, limit)

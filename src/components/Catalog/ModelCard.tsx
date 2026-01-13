@@ -36,7 +36,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
           {model.thumbnail ? (
             <img
               src={model.thumbnail}
-              alt={model.title}
+              alt={t(model.title)}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           ) : (
@@ -62,13 +62,13 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
       <div className="p-5">
         <Link to={`/product/${model.id}`}>
           <h3 className="text-lg font-semibold mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-            {model.title}
+            {t(model.title)}
           </h3>
         </Link>
 
         {model.description && (
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
-            {model.description}
+            {t(model.description)}
           </p>
         )}
 
@@ -96,7 +96,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
             )}
             <ARButton
               modelUrl={model.glb_url}
-              modelTitle={model.title}
+              modelTitle={t(model.title)}
               className="flex-1"
             />
           </div>

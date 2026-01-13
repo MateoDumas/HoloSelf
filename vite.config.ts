@@ -77,11 +77,13 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          'three': ['three'],
-          'drei': ['@react-three/drei'],
+          'three-vendor': ['three'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'framer-motion': ['framer-motion'],
         },
       },
     },

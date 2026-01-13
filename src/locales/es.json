@@ -59,5 +59,41 @@
         "back": "Atrás",
         "start": "¡Comenzar!",
         "skip": "Saltar tutorial"
-    }
+    },
+    "categories": {
+        "all": "Todas",
+        "sillas": "Sillas",
+        "accesorios": "Accesorios",
+        "juguetes": "Juguetes",
+        "demo": "Demo",
+        "moda": "Moda",
+        "electrónica": "Electrónica"
+    },
+    "products": {
+        "chair": {
+            "title": "Silla Damasco",
+            "desc": "Silla clásica con tapizado de damasco púrpura y dorado."
+        },
+        "box": {
+            "title": "Caja de Madera",
+            "desc": "Caja de madera simple para demostración."
+        },
+        "duck": {
+            "title": "Pato de Hule",
+            "desc": "Juguete de baño clásico y amigable."
+        },
+        "box_animated": {
+            "title": "Cubo Animado",
+            "desc": "Cubo con animaciones demostrativas."
+        },
+        "corset": {
+            "title": "Corsé Antiguo",
+            "desc": "Corsé histórico con detalles intrincados."
+        },
+        "boombox": {
+            "title": "BoomBox Retro",
+            "desc": "Radio casetera estilo retro con texturas PBR."
+        }
+    },
+    "similar_products": "Productos Similares"
 }

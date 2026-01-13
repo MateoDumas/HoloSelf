@@ -3,8 +3,8 @@ import { ModelMetadata } from '@/hooks/useModels'
 export const mockModels: ModelMetadata[] = [
   {
     id: '1',
-    title: 'Silla Damasco',
-    description: 'Silla clásica con tapizado de damasco púrpura y dorado.',
+    title: 'products.chair.title',
+    description: 'products.chair.desc',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ChairDamaskPurplegold/glTF-Binary/ChairDamaskPurplegold.glb',
     thumbnail: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400',
     price: 299.99,
@@ -23,8 +23,8 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '2',
-    title: 'Caja de Madera',
-    description: 'Caja de madera simple para demostración.',
+    title: 'products.box.title',
+    description: 'products.box.desc',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Box/glTF-Binary/Box.glb',
     thumbnail: 'https://images.unsplash.com/photo-1542332205-4db4015c7e18?auto=format&fit=crop&w=400&q=80',
     price: 49.99,
@@ -40,8 +40,8 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '3',
-    title: 'Pato de Hule',
-    description: 'Juguete de baño clásico y amigable.',
+    title: 'products.duck.title',
+    description: 'products.duck.desc',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Duck/glTF-Binary/Duck.glb',
     thumbnail: 'https://images.unsplash.com/photo-1555861496-0666c8981751?auto=format&fit=crop&w=400&q=80',
     price: 19.99,
@@ -57,8 +57,8 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '4',
-    title: 'Cubo Animado',
-    description: 'Cubo con animaciones demostrativas.',
+    title: 'products.box_animated.title',
+    description: 'products.box_animated.desc',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoxAnimated/glTF-Binary/BoxAnimated.glb',
     thumbnail: 'https://images.unsplash.com/photo-1533613220915-609f661a6fe1?auto=format&fit=crop&w=400&q=80',
     price: 129.99,
@@ -81,8 +81,8 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '5',
-    title: 'Corsé Antiguo',
-    description: 'Corsé histórico con detalles intrincados.',
+    title: 'products.corset.title',
+    description: 'products.corset.desc',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Corset/glTF-Binary/Corset.glb',
     thumbnail: 'https://images.unsplash.com/photo-1520116886241-11c79cbbf24b?auto=format&fit=crop&w=400&q=80',
     price: 149.99,
@@ -98,8 +98,8 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '6',
-    title: 'BoomBox Retro',
-    description: 'Radio casetera estilo retro con texturas PBR.',
+    title: 'products.boombox.title',
+    description: 'products.boombox.desc',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb',
     thumbnail: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=80',
     price: 199.99,

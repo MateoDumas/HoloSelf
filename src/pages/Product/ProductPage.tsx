@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useModel } from '@/hooks/useModels'
+import { useTranslation } from 'react-i18next'
 import Viewer from '@/components/Viewer'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
@@ -12,6 +13,7 @@ import { useCartStore } from '@/store/useCartStore'
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const { data: model, isLoading, error } = useModel(id || '')
+  const { t } = useTranslation()
   const [autoRotate, setAutoRotate] = useState(false)
   const [selectedVariant, setSelectedVariant] = useState<string | undefined>()
   const [currentModelUrl, setCurrentModelUrl] = useState<string>('')
@@ -141,11 +143,11 @@ const ProductPage: React.FC = () => {
                   className={`btn-secondary flex-1 ${autoRotate ? 'bg-primary-100 text-primary-700' : ''
                     }`}
                 >
-                  {autoRotate ? '⏸ Detener rotación' : '▶ Rotar automático'}
+                  {autoRotate ? '⏸ ' + t('onboarding.step2.title') : '▶ ' + t('onboarding.step2.title')}
                 </button>
                 <ARButton
                   modelUrl={currentModelUrl || model.glb_url}
-                  modelTitle={model.title}
+                  modelTitle={t(model.title)}
                   className="flex-1"
                 />
               </div>
@@ -155,22 +157,22 @@ const ProductPage: React.FC = () => {
           {/* Información del producto */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 border border-gray-200 dark:border-gray-700">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              {model.title}
+              {t(model.title)}
             </h1>
 
             {model.description && (
               <div className="mb-6">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Descripción
+                  {t('product.description')}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400">{model.description}</p>
+                <p className="text-gray-600 dark:text-gray-400">{t(model.description)}</p>
               </div>
             )}
 
             {model.price && (
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                  Precio
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                  {t('product.price')}
                 </h2>
                 <p className="text-3xl font-bold text-primary-600">
                   ${model.price.toLocaleString()}
@@ -180,10 +182,10 @@ const ProductPage: React.FC = () => {
 
             {model.meta?.dimensions && (
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                   Dimensiones
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   {model.meta.dimensions.width} × {model.meta.dimensions.height} ×{' '}
                   {model.meta.dimensions.depth} cm
                 </p>
@@ -202,12 +204,12 @@ const ProductPage: React.FC = () => {
                   onClick={handleAddToCart}
                   className="btn-primary w-full"
                 >
-                  Agregar al Carrito - ${model.price.toLocaleString()}
+                  {t('product.add_to_cart')} - ${model.price.toLocaleString()}
                 </button>
               )}
               <ARButton
                 modelUrl={currentModelUrl || model.glb_url}
-                modelTitle={model.title}
+                modelTitle={t(model.title)}
                 className="w-full"
               />
             </div>

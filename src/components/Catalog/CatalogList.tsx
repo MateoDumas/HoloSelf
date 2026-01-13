@@ -5,6 +5,7 @@ import ModelCard from './ModelCard'
 import SearchBar from '@/components/Search/SearchBar'
 import FilterPanel from '@/components/Filters/FilterPanel'
 import ProductCardSkeleton from './ProductCardSkeleton'
+import { useTranslation } from 'react-i18next'
 import CategoryPills from './CategoryPills'
 
 interface CatalogListProps {
@@ -17,6 +18,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
   pageSize = 20,
 }) => {
   const { data, isLoading, error } = useModels(page, pageSize)
+  const { t } = useTranslation()
   const [showFilters, setShowFilters] = useState(false)
 
   const {
@@ -85,17 +87,17 @@ const CatalogList: React.FC<CatalogListProps> = ({
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Catálogo de Productos
+              {t('catalog')}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mt-1">
-              {displayModels.length} {displayModels.length === 1 ? 'modelo' : 'modelos'} disponibles
+              {displayModels.length} {displayModels.length === 1 ? 'modelo' : 'modelos'} {t('catalog').toLowerCase()}
             </p>
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="btn-secondary w-full sm:w-auto"
           >
-            {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
+            {showFilters ? t('filters.hide') : t('filters.show')}
           </button>
         </div>
 
@@ -113,15 +115,15 @@ const CatalogList: React.FC<CatalogListProps> = ({
         </div>
 
         <div className="mb-4 flex gap-2 items-center">
-          <label className="text-sm text-gray-600 dark:text-gray-400">Ordenar por:</label>
+          <label className="text-sm text-gray-600 dark:text-gray-400">{t('sort.label')}</label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
             className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
           >
-            <option value="name">Nombre</option>
-            <option value="price-asc">Precio: Menor a Mayor</option>
-            <option value="price-desc">Precio: Mayor a Menor</option>
+            <option value="name">{t('sort.name')}</option>
+            <option value="price-asc">{t('sort.price_asc')}</option>
+            <option value="price-desc">{t('sort.price_desc')}</option>
           </select>
         </div>
       </div>

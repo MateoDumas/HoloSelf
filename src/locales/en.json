@@ -59,5 +59,41 @@
         "back": "Back",
         "start": "Get Started!",
         "skip": "Skip tutorial"
-    }
+    },
+    "categories": {
+        "all": "All",
+        "sillas": "Chairs",
+        "accesorios": "Accessories",
+        "juguetes": "Toys",
+        "demo": "Demo",
+        "moda": "Fashion",
+        "electrónica": "Electronics"
+    },
+    "products": {
+        "chair": {
+            "title": "Damask Chair",
+            "desc": "Classic chair with purple and gold damask upholstery."
+        },
+        "box": {
+            "title": "Wooden Box",
+            "desc": "Simple wooden box for demonstration."
+        },
+        "duck": {
+            "title": "Rubber Duck",
+            "desc": "Friendly classic bath toy."
+        },
+        "box_animated": {
+            "title": "Animated Cube",
+            "desc": "Cube with demonstrative animations."
+        },
+        "corset": {
+            "title": "Antique Corset",
+            "desc": "Historical corset with intricate details."
+        },
+        "boombox": {
+            "title": "Retro BoomBox",
+            "desc": "Retro style radio cassette with PBR textures."
+        }
+    },
+    "similar_products": "Similar Products"
 }
