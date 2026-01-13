@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface SearchBarProps {
   onSearch: (query: string) => void
@@ -7,8 +8,10 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
-  placeholder = 'Buscar productos...',
+  placeholder,
 }) => {
+  const { t } = useTranslation()
+  const displayPlaceholder = placeholder || t('search_placeholder')
   const [query, setQuery] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,7 +32,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           type="text"
           value={query}
           onChange={handleChange}
-          placeholder={placeholder}
+          placeholder={displayPlaceholder}
           className="w-full px-4 py-3 pl-10 pr-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-200 shadow-sm hover:shadow-md"
         />
         <svg

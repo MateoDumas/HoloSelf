@@ -90,7 +90,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
               {t('catalog')}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mt-1">
-              {displayModels.length} {displayModels.length === 1 ? 'modelo' : 'modelos'} {t('catalog').toLowerCase()}
+              {t('product_count', { count: displayModels.length })}
             </p>
           </div>
           <button
@@ -151,30 +151,30 @@ const CatalogList: React.FC<CatalogListProps> = ({
           {displayModels.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-600 dark:text-gray-400">
-                No se encontraron productos con los filtros seleccionados
+                {t('no_products_found')}
               </p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Paginación básica - puedes mejorarla después */}
+      {/* Paginación básica */}
       {data.total > pageSize && (
         <div className="mt-8 flex justify-center gap-2">
           <button
             disabled={page === 1}
             className="btn-secondary disabled:opacity-50"
           >
-            Anterior
+            {t('pagination.prev')}
           </button>
-          <span className="px-4 py-2 text-gray-700">
-            Página {page} de {Math.ceil(data.total / pageSize)}
+          <span className="px-4 py-2 text-gray-700 dark:text-gray-300 font-medium">
+            {t('pagination.page', { current: page, total: Math.ceil(data.total / pageSize) })}
           </span>
           <button
             disabled={page >= Math.ceil(data.total / pageSize)}
             className="btn-secondary disabled:opacity-50"
           >
-            Siguiente
+            {t('pagination.next')}
           </button>
         </div>
       )}

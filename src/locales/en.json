@@ -2,7 +2,17 @@
     "welcome": "Welcome to HoloSelf",
     "catalog": "3D/AR Product Catalog",
     "search_placeholder": "Search products...",
+    "product_count": "{{count}} models available",
+    "no_products_found": "No products found with selected filters",
+    "pagination": {
+        "prev": "Previous",
+        "next": "Next",
+        "page": "Page {{current}} of {{total}}"
+    },
     "filters": {
+        "title": "Filters",
+        "category": "Category",
+        "price": "Price",
         "show": "Show Filters",
         "hide": "Hide Filters",
         "categories": "Categories",
