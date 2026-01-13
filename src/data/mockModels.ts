@@ -26,7 +26,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Caja de Madera',
     description: 'Caja de madera simple para demostración.',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Box/glTF-Binary/Box.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=400',
+    thumbnail: 'https://images.unsplash.com/photo-1542332205-4db4015c7e18?auto=format&fit=crop&w=400&q=80',
     price: 49.99,
     meta: {
       category: 'accesorios',
@@ -43,7 +43,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Pato de Hule',
     description: 'Juguete de baño clásico y amigable.',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Duck/glTF-Binary/Duck.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400',
+    thumbnail: 'https://images.unsplash.com/photo-1555861496-0666c8981751?auto=format&fit=crop&w=400&q=80',
     price: 19.99,
     meta: {
       category: 'juguetes',
@@ -60,7 +60,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Cubo Animado',
     description: 'Cubo con animaciones demostrativas.',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoxAnimated/glTF-Binary/BoxAnimated.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400',
+    thumbnail: 'https://images.unsplash.com/photo-1533613220915-609f661a6fe1?auto=format&fit=crop&w=400&q=80',
     price: 129.99,
     meta: {
       category: 'demo',
@@ -84,10 +84,10 @@ export const mockModels: ModelMetadata[] = [
     title: 'Corsé Antiguo',
     description: 'Corsé histórico con detalles intrincados.',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Corset/glTF-Binary/Corset.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400',
+    thumbnail: 'https://images.unsplash.com/photo-1520116886241-11c79cbbf24b?auto=format&fit=crop&w=400&q=80',
     price: 149.99,
     meta: {
-      category: 'baag',
+      category: 'moda',
       tags: ['histórico', 'ropa'],
       dimensions: {
         width: 30,
@@ -101,7 +101,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'BoomBox Retro',
     description: 'Radio casetera estilo retro con texturas PBR.',
     glb_url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb',
-    thumbnail: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400',
+    thumbnail: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=80',
     price: 199.99,
     meta: {
       category: 'electrónica',
