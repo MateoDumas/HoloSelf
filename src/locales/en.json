@@ -1,0 +1,63 @@
+{
+    "welcome": "Welcome to HoloSelf",
+    "catalog": "3D/AR Product Catalog",
+    "search_placeholder": "Search products...",
+    "filters": {
+        "show": "Show Filters",
+        "hide": "Hide Filters",
+        "categories": "Categories",
+        "price_range": "Price Range",
+        "tags": "Tags",
+        "reset": "Reset Filters"
+    },
+    "sort": {
+        "label": "Sort by:",
+        "name": "Name",
+        "price_asc": "Price: Low to High",
+        "price_desc": "Price: High to Low"
+    },
+    "product": {
+        "view_details": "View details",
+        "add_to_cart": "Add to Cart",
+        "view_ar": "View AR",
+        "description": "Description",
+        "price": "Price"
+    },
+    "cart": {
+        "title": "Shopping Cart",
+        "empty": "Your cart is empty",
+        "checkout": "Checkout",
+        "total": "Total"
+    },
+    "favorites": {
+        "title": "Favorites",
+        "empty": "No favorites yet"
+    },
+    "history": {
+        "title": "Recently Viewed",
+        "empty": "No history yet"
+    },
+    "loading": "Loading 3D...",
+    "onboarding": {
+        "step1": {
+            "title": "Welcome to HoloSelf!",
+            "desc": "Explore our 3D and AR product catalog"
+        },
+        "step2": {
+            "title": "Interactive 3D View",
+            "desc": "Rotate, zoom and explore every product in detail"
+        },
+        "step3": {
+            "title": "Augmented Reality",
+            "desc": "Tap the AR button to see products in your space"
+        },
+        "step4": {
+            "title": "Favorites & Cart",
+            "desc": "Save your favorite items and add them to cart"
+        },
+        "next": "Next",
+        "back": "Back",
+        "start": "Get Started!",
+        "skip": "Skip tutorial"
+    }
+}

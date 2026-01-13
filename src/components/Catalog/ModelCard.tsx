@@ -4,6 +4,7 @@ import { ModelMetadata } from '@/hooks/useModels'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
 import { useCartStore } from '@/store/useCartStore'
+import { useTranslation } from 'react-i18next'
 
 interface ModelCardProps {
   model: ModelMetadata
@@ -11,6 +12,7 @@ interface ModelCardProps {
 
 const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   const { addItem } = useCartStore()
+  const { t } = useTranslation()
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -81,7 +83,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
             to={`/product/${model.id}`}
             className="btn-secondary text-center text-sm py-2"
           >
-            Ver detalles
+            {t('product.view_details')}
           </Link>
           <div className="flex gap-2">
             {model.price && (
@@ -89,7 +91,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
                 onClick={handleAddToCart}
                 className="btn-primary flex-1 text-sm py-2"
               >
-                Agregar
+                {t('product.add_to_cart')}
               </button>
             )}
             <ARButton

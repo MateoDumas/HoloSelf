@@ -4,7 +4,8 @@ import { useSearchAndFilter } from '@/hooks/useSearchAndFilter'
 import ModelCard from './ModelCard'
 import SearchBar from '@/components/Search/SearchBar'
 import FilterPanel from '@/components/Filters/FilterPanel'
-import SkeletonLoader from '@/components/UI/SkeletonLoader'
+import ProductCardSkeleton from './ProductCardSkeleton'
+
 
 interface CatalogListProps {
   page?: number
@@ -38,7 +39,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {[...Array(8)].map((_, i) => (
-          <SkeletonLoader key={i} type="card" />
+          <ProductCardSkeleton key={i} />
         ))}
       </div>
     )
@@ -138,7 +139,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
           )}
         </div>
       </div>
-      
+
       {/* Paginación básica - puedes mejorarla después */}
       {data.total > pageSize && (
         <div className="mt-8 flex justify-center gap-2">

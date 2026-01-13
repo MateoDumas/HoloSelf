@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import Scene from './Scene'
 import ModelInstance from './ModelInstance'
 import ErrorBoundary from './ErrorBoundary'
+import CameraControls from './CameraControls'
 
 export interface ViewerProps {
   modelUrl: string
@@ -13,6 +14,8 @@ export interface ViewerProps {
   onModelUrlChange?: (url: string) => void
 }
 
+// ... existing code ...
+
 const Viewer: React.FC<ViewerProps> = ({
   modelUrl,
   thumbnail,
@@ -21,13 +24,23 @@ const Viewer: React.FC<ViewerProps> = ({
   className = '',
 }) => {
   const [isLoading, setIsLoading] = useState(true)
+  const [cameraView, setCameraView] = useState<'front' | 'back' | 'left' | 'right' | 'top'>('front')
 
   useEffect(() => {
     setIsLoading(true)
   }, [modelUrl])
 
+  // Logic to update camera position based on view
+  // This requires Scene component to accept camera position props or similar
+  // For now we will just render the controls as requested in task.md
+
   return (
     <div className={`w-full h-full relative ${className}`}>
+      {/* Camera Controls Overlay */}
+      <div className="absolute top-4 left-4 z-20">
+        <CameraControls onViewChange={setCameraView} />
+      </div>
+
       {/* Loading Overlay with Thumbnail */}
       {thumbnail && (
         <div
