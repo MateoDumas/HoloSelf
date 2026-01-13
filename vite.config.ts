@@ -5,9 +5,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Base path para GitHub Pages
-  // Repositorio: https://github.com/MateoDumas/HoloSelf
-  base: '/HoloSelf/',
+  // Base path para Vercel (root)
+  base: '/',
   plugins: [
     react(),
     VitePWA({
@@ -22,7 +21,7 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: '/HoloSelf/favicon.svg',
+            src: '/favicon.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'any maskable'
