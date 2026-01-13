@@ -4,12 +4,15 @@ import CatalogList from '@/components/Catalog/CatalogList'
 import ThemeToggle from '@/components/ThemeToggle'
 import CartButton from '@/components/Cart/CartButton'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
+import Onboarding from '@/components/Onboarding'
+
 
 const Home: React.FC = () => {
   const { favorites } = useFavoritesStore()
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Onboarding />
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center">
@@ -71,11 +74,11 @@ const Home: React.FC = () => {
           </div>
         </div>
       </header>
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CatalogList />
       </main>
-      
+
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
