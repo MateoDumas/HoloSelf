@@ -1,4 +1,16 @@
+import React from 'react'
+import { Canvas } from '@react-three/fiber'
+import Scene from './Scene'
+import ModelInstance from './ModelInstance'
 import ErrorBoundary from './ErrorBoundary'
+
+export interface ViewerProps {
+  modelUrl: string
+  autoRotate?: boolean
+  enableAR?: boolean
+  className?: string
+  onModelUrlChange?: (url: string) => void
+}
 
 const Viewer: React.FC<ViewerProps> = ({
   modelUrl,
