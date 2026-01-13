@@ -4,8 +4,9 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Base path para GitHub Pages
-  // Repositorio: https://github.com/MateoDumas/HoloSelf
+  // Base path:
+  // - GitHub Pages: '/HoloSelf/' (cuando GITHUB_PAGES=true)
+  // - Vercel/Netlify/otros: '/' (default)
   base: process.env.GITHUB_PAGES === 'true' ? '/HoloSelf/' : '/',
   plugins: [react()],
   resolve: {
