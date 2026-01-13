@@ -89,11 +89,11 @@ const Onboarding: React.FC = () => {
                         initial={{ scale: 0.9, y: 20 }}
                         animate={{ scale: 1, y: 0 }}
                         exit={{ scale: 0.9, y: 20 }}
-                        className="glass-card max-w-md w-full p-8 relative"
+                        className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-8 relative border border-gray-200 dark:border-gray-700"
                     >
                         <button
                             onClick={handleSkip}
-                            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                            className="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
                             aria-label="Cerrar"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,11 +114,11 @@ const Onboarding: React.FC = () => {
                                     {steps[currentStep].icon}
                                 </div>
 
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                                     {steps[currentStep].title}
                                 </h2>
 
-                                <p className="text-gray-600 dark:text-gray-400 mb-8">
+                                <p className="text-base text-gray-700 dark:text-gray-300 mb-8">
                                     {steps[currentStep].description}
                                 </p>
 
@@ -127,8 +127,8 @@ const Onboarding: React.FC = () => {
                                         <div
                                             key={index}
                                             className={`h-2 rounded-full transition-all duration-300 ${index === currentStep
-                                                    ? 'w-8 bg-primary-500'
-                                                    : 'w-2 bg-gray-300 dark:bg-gray-600'
+                                                ? 'w-8 bg-primary-500'
+                                                : 'w-2 bg-gray-300 dark:bg-gray-600'
                                                 }`}
                                         />
                                     ))}
@@ -154,7 +154,7 @@ const Onboarding: React.FC = () => {
                                 {currentStep < steps.length - 1 && (
                                     <button
                                         onClick={handleSkip}
-                                        className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 mt-4"
+                                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 mt-4 transition-colors"
                                     >
                                         Saltar tutorial
                                     </button>

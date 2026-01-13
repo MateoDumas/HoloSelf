@@ -56,46 +56,48 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
           )}
         </div>
       </Link>
-      
-      <div className="p-4">
+
+      <div className="p-5">
         <Link to={`/product/${model.id}`}>
-          <h3 className="text-lg font-semibold mb-2 hover:text-primary-600 transition-colors">
+          <h3 className="text-lg font-semibold mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             {model.title}
           </h3>
         </Link>
-        
+
         {model.description && (
-          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
             {model.description}
           </p>
         )}
-        
+
         {model.price && (
-          <p className="text-xl font-bold text-primary-600 mb-3">
+          <p className="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
             ${model.price.toLocaleString()}
           </p>
         )}
-        
-        <div className="flex gap-2">
+
+        <div className="flex flex-col gap-2">
           <Link
             to={`/product/${model.id}`}
-            className="btn-secondary flex-1 text-center"
+            className="btn-secondary text-center text-sm py-2"
           >
             Ver detalles
           </Link>
-          {model.price && (
-            <button
-              onClick={handleAddToCart}
-              className="btn-primary flex-1"
-            >
-              Agregar
-            </button>
-          )}
-          <ARButton
-            modelUrl={model.glb_url}
-            modelTitle={model.title}
-            className="flex-1"
-          />
+          <div className="flex gap-2">
+            {model.price && (
+              <button
+                onClick={handleAddToCart}
+                className="btn-primary flex-1 text-sm py-2"
+              >
+                Agregar
+              </button>
+            )}
+            <ARButton
+              modelUrl={model.glb_url}
+              modelTitle={model.title}
+              className="flex-1"
+            />
+          </div>
         </div>
       </div>
     </div>
