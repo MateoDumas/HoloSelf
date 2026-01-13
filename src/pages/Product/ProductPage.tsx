@@ -126,20 +126,20 @@ const ProductPage: React.FC = () => {
             <div className="aspect-square relative">
               <Viewer
                 modelUrl={currentModelUrl || model.glb_url}
+                thumbnail={model.thumbnail}
                 autoRotate={autoRotate}
                 enableAR={true}
                 className="w-full h-full"
               />
             </div>
-            
+
             {/* Controles del viewer */}
             <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
               <div className="flex gap-2">
                 <button
                   onClick={() => setAutoRotate(!autoRotate)}
-                  className={`btn-secondary flex-1 ${
-                    autoRotate ? 'bg-primary-100 text-primary-700' : ''
-                  }`}
+                  className={`btn-secondary flex-1 ${autoRotate ? 'bg-primary-100 text-primary-700' : ''
+                    }`}
                 >
                   {autoRotate ? '⏸ Detener rotación' : '▶ Rotar automático'}
                 </button>

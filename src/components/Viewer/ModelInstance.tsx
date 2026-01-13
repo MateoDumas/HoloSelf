@@ -5,16 +5,17 @@ import * as THREE from 'three'
 
 interface ModelInstanceProps {
   url: string
+  onLoad?: () => void
 }
 
-const ModelInstance: React.FC<ModelInstanceProps> = ({ url }) => {
+const ModelInstance: React.FC<ModelInstanceProps> = ({ url, onLoad }) => {
   const { scene } = useGLTF(url) as any
 
   React.useEffect(() => {
     if (scene) {
       // Centrar y escalar el modelo
       centerAndScaleModel(scene, 2)
-      
+
       // Configurar sombras
       scene.traverse((child: THREE.Object3D) => {
         if (child instanceof THREE.Mesh) {
@@ -22,8 +23,11 @@ const ModelInstance: React.FC<ModelInstanceProps> = ({ url }) => {
           child.receiveShadow = true
         }
       })
+
+      // Notificar que se cargó
+      onLoad?.()
     }
-  }, [scene])
+  }, [scene, onLoad])
 
   return (
     <Suspense
