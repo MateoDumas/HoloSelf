@@ -82,7 +82,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
   return (
     <div>
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               Catálogo de Productos
@@ -93,7 +93,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="btn-secondary"
+            className="btn-secondary w-full sm:w-auto"
           >
             {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
           </button>

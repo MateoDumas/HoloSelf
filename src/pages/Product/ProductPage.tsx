@@ -123,7 +123,7 @@ const ProductPage: React.FC = () => {
             <div className="absolute top-4 right-4 z-10">
               <FavoriteButton productId={model.id} />
             </div>
-            <div className="aspect-square relative">
+            <div className="h-[50vh] lg:h-auto lg:aspect-square relative">
               <Viewer
                 modelUrl={currentModelUrl || model.glb_url}
                 thumbnail={model.thumbnail}

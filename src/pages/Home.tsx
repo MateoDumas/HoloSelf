@@ -6,8 +6,7 @@ import CartButton from '@/components/Cart/CartButton'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import Onboarding from '@/components/Onboarding'
 import SkipToContent from '@/components/UI/SkipToContent'
-
-
+import LanguageSelector from '@/components/UI/LanguageSelector'
 import { useTranslation } from 'react-i18next'
 
 const Home: React.FC = () => {
@@ -20,7 +19,7 @@ const Home: React.FC = () => {
       <Onboarding />
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                 {t('welcome')}
@@ -29,7 +28,7 @@ const Home: React.FC = () => {
                 {t('catalog')}
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 w-full sm:w-auto justify-end">
               <Link
                 to="/history"
                 className="relative p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
@@ -75,6 +74,7 @@ const Home: React.FC = () => {
               </Link>
               <CartButton />
               <ThemeToggle />
+              <LanguageSelector />
             </div>
           </div>
         </div>
