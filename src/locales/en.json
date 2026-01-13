@@ -84,28 +84,28 @@
     },
     "products": {
         "chair": {
-            "title": "Damask Chair",
-            "desc": "Classic chair with purple and gold damask upholstery."
+            "title": "Modern Chair",
+            "desc": "Ergonomic chair with modern design and adjustable lumbar support."
         },
         "box": {
-            "title": "Wooden Box",
-            "desc": "Simple wooden box for demonstration."
+            "title": "Center Table",
+            "desc": "Center table made of solid wood with natural finish."
         },
-        "duck": {
-            "title": "Rubber Duck",
-            "desc": "Friendly classic bath toy."
+        "lantern": {
+            "title": "Floor Lamp",
+            "desc": "Floor lamp with minimalist design and adjustable LED light."
         },
         "box_animated": {
-            "title": "Animated Cube",
-            "desc": "Cube with demonstrative animations."
+            "title": "Modular Sofa",
+            "desc": "Modular 3-seater sofa with premium fabric upholstery."
         },
-        "corset": {
-            "title": "Antique Corset",
-            "desc": "Historical corset with intricate details."
+        "shelf": {
+            "title": "Floating Shelf",
+            "desc": "Floating shelf with Scandinavian design and 4 levels."
         },
-        "boombox": {
-            "title": "Retro BoomBox",
-            "desc": "Retro style radio cassette with PBR textures."
+        "desk": {
+            "title": "Executive Desk",
+            "desc": "Executive desk made of oak with side drawers."
         }
     },
     "similar_products": "Similar Products"

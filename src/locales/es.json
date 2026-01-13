@@ -84,28 +84,28 @@
     },
     "products": {
         "chair": {
-            "title": "Silla Damasco",
-            "desc": "Silla clásica con tapizado de damasco púrpura y dorado."
+            "title": "Silla Moderna",
+            "desc": "Silla ergonómica de diseño moderno con soporte lumbar ajustable."
         },
         "box": {
-            "title": "Caja de Madera",
-            "desc": "Caja de madera simple para demostración."
+            "title": "Mesa de Centro",
+            "desc": "Mesa de centro de madera maciza con acabado natural."
         },
-        "duck": {
-            "title": "Pato de Hule",
-            "desc": "Juguete de baño clásico y amigable."
+        "lantern": {
+            "title": "Lámpara de Pie",
+            "desc": "Lámpara de pie con diseño minimalista y luz LED regulable."
         },
         "box_animated": {
-            "title": "Cubo Animado",
-            "desc": "Cubo con animaciones demostrativas."
+            "title": "Sofá Modular",
+            "desc": "Sofá modular de 3 plazas con tapizado en tela premium."
         },
-        "corset": {
-            "title": "Corsé Antiguo",
-            "desc": "Corsé histórico con detalles intrincados."
+        "shelf": {
+            "title": "Estantería Flotante",
+            "desc": "Estantería flotante de diseño escandinavo con 4 niveles."
         },
-        "boombox": {
-            "title": "BoomBox Retro",
-            "desc": "Radio casetera estilo retro con texturas PBR."
+        "desk": {
+            "title": "Escritorio Ejecutivo",
+            "desc": "Escritorio ejecutivo de roble con cajones laterales."
         }
     },
     "similar_products": "Productos Similares"
