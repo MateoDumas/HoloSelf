@@ -18,7 +18,8 @@ if (savedTheme) {
 }
 
 // Registrar Service Worker para PWA
-if ('serviceWorker' in navigator) {
+// Solo en producción y si el archivo existe
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/sw.js')
@@ -26,7 +27,12 @@ if ('serviceWorker' in navigator) {
         console.log('SW registered: ', registration)
       })
       .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError)
+        // Silenciar errores de SW en desarrollo o si no existe
+        if (import.meta.env.DEV) {
+          console.log('SW registration skipped in development')
+        } else {
+          console.warn('SW registration failed: ', registrationError)
+        }
       })
   })
 }

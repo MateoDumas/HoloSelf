@@ -8,6 +8,7 @@ import History from './pages/History'
 import { useThemeStore } from './store/useThemeStore'
 
 // Base path para GitHub Pages (debe coincidir con el nombre del repositorio)
+// En Vercel, BASE_URL será '/' automáticamente
 const basePath = import.meta.env.BASE_URL || '/'
 
 function App() {
