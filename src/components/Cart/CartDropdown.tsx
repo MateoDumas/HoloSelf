@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCartStore } from '@/store/useCartStore'
-import { useTranslation } from 'react-i18next'
 
 interface CartDropdownProps {
   onClose: () => void
@@ -9,13 +8,12 @@ interface CartDropdownProps {
 
 const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
   const { items, removeItem, updateQuantity, getTotal, clearCart } = useCartStore()
-  const { t } = useTranslation()
 
   if (items.length === 0) {
     return (
       <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 p-4">
         <p className="text-gray-600 dark:text-gray-400 text-center">
-          {t('cart.empty')}
+          Tu carrito está vacío
         </p>
       </div>
     )
@@ -25,13 +23,13 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
     <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-          {t('cart.title')} ({items.length})
+          Carrito ({items.length})
         </h3>
         <button
           onClick={clearCart}
           className="text-sm text-red-600 dark:text-red-400 hover:underline"
         >
-          {t('cart.clear')}
+          Vaciar
         </button>
       </div>
       <div className="p-4 space-y-4">
@@ -43,13 +41,13 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
             {item.thumbnail && (
               <img
                 src={item.thumbnail}
-                alt={t(item.title)}
+                alt={item.title}
                 className="w-16 h-16 object-cover rounded"
               />
             )}
             <div className="flex-1">
               <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
-                {t(item.title)}
+                {item.title}
               </h4>
               {item.price && (
                 <p className="text-primary-600 dark:text-primary-400 font-semibold">
@@ -76,7 +74,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
                   onClick={() => removeItem(item.id)}
                   className="ml-auto text-red-600 dark:text-red-400 text-sm hover:underline"
                 >
-                  {t('cart.remove')}
+                  Eliminar
                 </button>
               </div>
             </div>
@@ -86,7 +84,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
       <div className="p-4 border-t border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center mb-4">
           <span className="font-semibold text-gray-900 dark:text-gray-100">
-            {t('cart.total')}:
+            Total:
           </span>
           <span className="text-xl font-bold text-primary-600 dark:text-primary-400">
             ${getTotal().toLocaleString()}
@@ -97,7 +95,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
           onClick={onClose}
           className="block w-full btn-primary text-center"
         >
-          {t('cart.view')}
+          Ver Carrito
         </Link>
       </div>
     </div>

@@ -45,11 +45,23 @@ class ErrorBoundary extends Component<Props, State> {
                         />
                     </svg>
                     <h3 className="text-lg font-medium mb-1">Error al cargar el modelo 3D</h3>
-                    <p className="text-sm">Hubo un problema al visualizar este producto.</p>
-                    {process.env.NODE_ENV === 'development' && this.state.error && (
-                        <pre className="mt-4 p-2 bg-gray-200 dark:bg-gray-900 rounded text-xs text-left overflow-auto max-w-full">
-                            {this.state.error.message}
-                        </pre>
+                    <p className="text-sm mb-3">Hubo un problema al visualizar este producto.</p>
+                    {this.state.error && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            {this.state.error.message?.includes('404')
+                                ? 'El archivo del modelo no se encontró en el servidor'
+                                : this.state.error.message || 'Error desconocido'}
+                        </p>
+                    )}
+                    {(import.meta.env.DEV || import.meta.env.MODE === 'development') && this.state.error && (
+                        <details className="mt-4 text-xs text-left max-w-full">
+                            <summary className="cursor-pointer text-gray-600 dark:text-gray-400 mb-2">
+                                Detalles técnicos
+                            </summary>
+                            <pre className="p-2 bg-gray-200 dark:bg-gray-900 rounded text-xs overflow-auto max-w-full">
+                                {this.state.error.stack || this.state.error.message}
+                            </pre>
+                        </details>
                     )}
                 </div>
             )

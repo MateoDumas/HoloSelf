@@ -1,6 +1,5 @@
 import React from 'react'
 import { ModelMetadata } from '@/hooks/useModels'
-import { useTranslation } from 'react-i18next'
 
 interface FilterPanelProps {
   models: ModelMetadata[]
@@ -21,7 +20,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   onTagToggle,
   onPriceRangeChange,
 }) => {
-  const { t } = useTranslation()
   // Obtener categorías únicas
   const categories = Array.from(
     new Set(models.map((m) => m.meta?.category).filter(Boolean))
@@ -52,13 +50,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
           />
         </svg>
-        {t('filters.title')}
+        Filtros
       </h3>
 
       {/* Categorías */}
       <div>
         <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-          {t('filters.category')}
+          Categoría
         </h4>
         <div className="space-y-2">
           <label className="flex items-center">
@@ -69,7 +67,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
               onChange={() => onCategoryChange(null)}
               className="mr-2"
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('categories.all')}</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">Todas</span>
           </label>
           {categories.map((category) => (
             <label key={category} className="flex items-center">
@@ -81,7 +79,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                 className="mr-2"
               />
               <span className="text-sm text-gray-600 dark:text-gray-400 capitalize">
-                {t(`categories.${category}`)}
+                {category}
               </span>
             </label>
           ))}
@@ -92,7 +90,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {uniqueTags.length > 0 && (
         <div>
           <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-            {t('filters.tags')}
+            Tags
           </h4>
           <div className="space-y-2 max-h-40 overflow-y-auto">
             {uniqueTags.map((tag) => (
@@ -115,7 +113,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {/* Rango de Precio */}
       <div>
         <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-          {t('filters.price')}
+          Precio
         </h4>
         <div className="space-y-2">
           <input
@@ -126,7 +124,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             onChange={(e) =>
               onPriceRangeChange([priceRange[0], Number(e.target.value)])
             }
-            className="w-full px-0"
+            className="w-full"
           />
           <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
             <span>${priceRange[0]}</span>

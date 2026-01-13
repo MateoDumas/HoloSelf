@@ -4,9 +4,7 @@ import { useSearchAndFilter } from '@/hooks/useSearchAndFilter'
 import ModelCard from './ModelCard'
 import SearchBar from '@/components/Search/SearchBar'
 import FilterPanel from '@/components/Filters/FilterPanel'
-import ProductCardSkeleton from './ProductCardSkeleton'
-import { useTranslation } from 'react-i18next'
-import CategoryPills from './CategoryPills'
+import SkeletonLoader from '@/components/UI/SkeletonLoader'
 
 interface CatalogListProps {
   page?: number
@@ -18,7 +16,6 @@ const CatalogList: React.FC<CatalogListProps> = ({
   pageSize = 20,
 }) => {
   const { data, isLoading, error } = useModels(page, pageSize)
-  const { t } = useTranslation()
   const [showFilters, setShowFilters] = useState(false)
 
   const {
@@ -37,18 +34,11 @@ const CatalogList: React.FC<CatalogListProps> = ({
     models: data?.models || [],
   })
 
-  // Calcular categorías disponibles
-  const categories = React.useMemo(() => {
-    if (!data?.models) return []
-    const cats = new Set(data.models.map((m) => m.meta?.category).filter(Boolean))
-    return Array.from(cats) as string[]
-  }, [data?.models])
-
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {[...Array(8)].map((_, i) => (
-          <ProductCardSkeleton key={i} />
+          <SkeletonLoader key={i} type="card" />
         ))}
       </div>
     )
@@ -84,46 +74,37 @@ const CatalogList: React.FC<CatalogListProps> = ({
   return (
     <div>
       <div className="mb-6">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+        <div className="flex justify-between items-center mb-4">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              {t('catalog')}
+              Catálogo de Productos
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mt-1">
-              {t('product_count', { count: displayModels.length })}
+              {displayModels.length} {displayModels.length === 1 ? 'modelo' : 'modelos'} disponibles
             </p>
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="btn-secondary w-full sm:w-auto"
+            className="btn-secondary"
           >
-            {showFilters ? t('filters.hide') : t('filters.show')}
+            {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
           </button>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <SearchBar onSearch={setSearchQuery} />
         </div>
 
-        {/* Category Pills */}
-        <div className="mb-6">
-          <CategoryPills
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-          />
-        </div>
-
         <div className="mb-4 flex gap-2 items-center">
-          <label className="text-sm text-gray-600 dark:text-gray-400">{t('sort.label')}</label>
+          <label className="text-sm text-gray-600 dark:text-gray-400">Ordenar por:</label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
             className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
           >
-            <option value="name">{t('sort.name')}</option>
-            <option value="price-asc">{t('sort.price_asc')}</option>
-            <option value="price-desc">{t('sort.price_desc')}</option>
+            <option value="name">Nombre</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
           </select>
         </div>
       </div>
@@ -151,30 +132,30 @@ const CatalogList: React.FC<CatalogListProps> = ({
           {displayModels.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-600 dark:text-gray-400">
-                {t('no_products_found')}
+                No se encontraron productos con los filtros seleccionados
               </p>
             </div>
           )}
         </div>
       </div>
-
-      {/* Paginación básica */}
+      
+      {/* Paginación básica - puedes mejorarla después */}
       {data.total > pageSize && (
         <div className="mt-8 flex justify-center gap-2">
           <button
             disabled={page === 1}
             className="btn-secondary disabled:opacity-50"
           >
-            {t('pagination.prev')}
+            Anterior
           </button>
-          <span className="px-4 py-2 text-gray-700 dark:text-gray-300 font-medium">
-            {t('pagination.page', { current: page, total: Math.ceil(data.total / pageSize) })}
+          <span className="px-4 py-2 text-gray-700">
+            Página {page} de {Math.ceil(data.total / pageSize)}
           </span>
           <button
             disabled={page >= Math.ceil(data.total / pageSize)}
             className="btn-secondary disabled:opacity-50"
           >
-            {t('pagination.next')}
+            Siguiente
           </button>
         </div>
       )}

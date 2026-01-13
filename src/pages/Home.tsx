@@ -4,35 +4,28 @@ import CatalogList from '@/components/Catalog/CatalogList'
 import ThemeToggle from '@/components/ThemeToggle'
 import CartButton from '@/components/Cart/CartButton'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
-import Onboarding from '@/components/Onboarding'
-import SkipToContent from '@/components/UI/SkipToContent'
-import LanguageSelector from '@/components/UI/LanguageSelector'
-import { useTranslation } from 'react-i18next'
 
 const Home: React.FC = () => {
   const { favorites } = useFavoritesStore()
-  const { t } = useTranslation()
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <SkipToContent />
-      <Onboarding />
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-                {t('welcome')}
+                HoloSelf
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
-                {t('catalog')}
+                Catálogo 3D/AR de productos
               </p>
             </div>
-            <div className="flex items-center gap-4 w-full sm:w-auto justify-end">
+            <div className="flex items-center gap-4">
               <Link
                 to="/history"
                 className="relative p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                title={t('history.title')}
+                title="Historial"
               >
                 <svg
                   className="w-5 h-5"
@@ -51,7 +44,7 @@ const Home: React.FC = () => {
               <Link
                 to="/favorites"
                 className="relative p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                title={t('favorites.title')}
+                title="Favoritos"
               >
                 <svg
                   className="w-5 h-5"
@@ -74,16 +67,15 @@ const Home: React.FC = () => {
               </Link>
               <CartButton />
               <ThemeToggle />
-              <LanguageSelector />
             </div>
           </div>
         </div>
       </header>
-
+      
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CatalogList />
       </main>
-
+      
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-center text-gray-600 dark:text-gray-400 text-sm">

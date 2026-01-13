@@ -4,7 +4,6 @@ import { ModelMetadata } from '@/hooks/useModels'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
 import { useCartStore } from '@/store/useCartStore'
-import { useTranslation } from 'react-i18next'
 
 interface ModelCardProps {
   model: ModelMetadata
@@ -12,7 +11,6 @@ interface ModelCardProps {
 
 const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   const { addItem } = useCartStore()
-  const { t } = useTranslation()
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -36,7 +34,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
           {model.thumbnail ? (
             <img
               src={model.thumbnail}
-              alt={t(model.title)}
+              alt={model.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           ) : (
@@ -58,48 +56,46 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
           )}
         </div>
       </Link>
-
-      <div className="p-5">
+      
+      <div className="p-4">
         <Link to={`/product/${model.id}`}>
-          <h3 className="text-lg font-semibold mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-            {t(model.title)}
+          <h3 className="text-lg font-semibold mb-2 hover:text-primary-600 transition-colors">
+            {model.title}
           </h3>
         </Link>
-
+        
         {model.description && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
-            {t(model.description)}
+          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+            {model.description}
           </p>
         )}
-
+        
         {model.price && (
-          <p className="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          <p className="text-xl font-bold text-primary-600 mb-3">
             ${model.price.toLocaleString()}
           </p>
         )}
-
-        <div className="flex flex-col gap-2">
+        
+        <div className="flex gap-2">
           <Link
             to={`/product/${model.id}`}
-            className="btn-secondary text-center text-sm py-2"
+            className="btn-secondary flex-1 text-center"
           >
-            {t('product.view_details')}
+            Ver detalles
           </Link>
-          <div className="flex gap-2">
-            {model.price && (
-              <button
-                onClick={handleAddToCart}
-                className="btn-primary flex-1 text-sm py-2"
-              >
-                {t('product.add_to_cart')}
-              </button>
-            )}
-            <ARButton
-              modelUrl={model.glb_url}
-              modelTitle={t(model.title)}
-              className="flex-1"
-            />
-          </div>
+          {model.price && (
+            <button
+              onClick={handleAddToCart}
+              className="btn-primary flex-1"
+            >
+              Agregar
+            </button>
+          )}
+          <ARButton
+            modelUrl={model.glb_url}
+            modelTitle={model.title}
+            className="flex-1"
+          />
         </div>
       </div>
     </div>
