@@ -6,7 +6,7 @@ import path from 'path'
 export default defineConfig({
   // Base path para GitHub Pages
   // Repositorio: https://github.com/MateoDumas/HoloSelf
-  base: process.env.GITHUB_PAGES === 'true' ? '/HoloSelf/' : '/',
+  base: '/HoloSelf/',
   plugins: [react()],
   resolve: {
     alias: {
