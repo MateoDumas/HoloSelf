@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useXR } from '@/hooks/useXR'
 import {
-  getARQuickLookURL,
   getSceneViewerURL,
   isIOSARAvailable,
   isAndroidARAvailable,
@@ -22,7 +21,6 @@ const ARButton: React.FC<ARButtonProps> = ({
   const { arMethod, isSupported, startARSession } = useXR()
   const [isLoading, setIsLoading] = useState(false)
   const [modelViewerId] = useState(() => `model-viewer-${Math.random().toString(36).substr(2, 9)}`)
-  const modelViewerRef = useRef<any>(null)
 
   const handleARClick = async () => {
     if (!isSupported) {
@@ -38,7 +36,7 @@ const ARButton: React.FC<ARButtonProps> = ({
         // Para iOS, usar model-viewer que maneja mejor los headers y el formato
         // Crear un model-viewer oculto si no existe
         let modelViewer = document.getElementById(modelViewerId) as any
-        
+
         if (!modelViewer) {
           // Crear elemento model-viewer dinámicamente
           modelViewer = document.createElement('model-viewer')
@@ -60,7 +58,7 @@ const ARButton: React.FC<ARButtonProps> = ({
           // Actualizar src si ya existe
           modelViewer.src = modelUrl
         }
-        
+
         // Esperar a que model-viewer esté listo y activar AR
         const activateAR = () => {
           try {
@@ -75,7 +73,7 @@ const ARButton: React.FC<ARButtonProps> = ({
             activateARQuickLook(modelUrl)
           }
         }
-        
+
         // Esperar a que el componente esté listo
         if (modelViewer.loaded) {
           activateAR()
@@ -88,7 +86,7 @@ const ARButton: React.FC<ARButtonProps> = ({
             }
           }, 2000)
         }
-        
+
         setIsLoading(false)
         return
       }

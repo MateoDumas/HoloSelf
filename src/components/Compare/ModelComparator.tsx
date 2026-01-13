@@ -32,7 +32,7 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
             onClick={onClose}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
-            <XIcon className="w-6 h-6" />
+            <X className="w-6 h-6" />
           </button>
         </div>
 
@@ -55,10 +55,10 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
                       onClick={() => removeModel(model.id)}
                       className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
                     >
-                      <XIcon className="w-5 h-5" />
+                      <X className="w-5 h-5" />
                     </button>
                   </div>
-                  
+
                   <div className="aspect-square mb-4 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
                     <Viewer
                       modelUrl={model.glb_url}
