@@ -37,7 +37,10 @@
         "title": "Carrito de Compras",
         "empty": "Tu carrito está vacío",
         "checkout": "Finalizar Compra",
-        "total": "Total"
+        "total": "Total",
+        "clear": "Vaciar",
+        "remove": "Eliminar",
+        "view": "Ver Carrito"
     },
     "favorites": {
         "title": "Favoritos",

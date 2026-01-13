@@ -37,7 +37,10 @@
         "title": "Shopping Cart",
         "empty": "Your cart is empty",
         "checkout": "Checkout",
-        "total": "Total"
+        "total": "Total",
+        "clear": "Clear",
+        "remove": "Remove",
+        "view": "View Cart"
     },
     "favorites": {
         "title": "Favorites",

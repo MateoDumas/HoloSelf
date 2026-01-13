@@ -1,16 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface OnboardingStep {
-    title: string
-    description: string
+    titleKey: string
+    descriptionKey: string
     icon: React.ReactNode
 }
 
 const steps: OnboardingStep[] = [
     {
-        title: '¡Bienvenido a HoloSelf!',
-        description: 'Explora nuestro catálogo de productos en 3D y AR',
+        titleKey: 'onboarding.step1.title',
+        descriptionKey: 'onboarding.step1.desc',
         icon: (
             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
@@ -18,8 +19,8 @@ const steps: OnboardingStep[] = [
         )
     },
     {
-        title: 'Vista 3D Interactiva',
-        description: 'Rota, acerca y explora cada producto en detalle',
+        titleKey: 'onboarding.step2.title',
+        descriptionKey: 'onboarding.step2.desc',
         icon: (
             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -28,8 +29,8 @@ const steps: OnboardingStep[] = [
         )
     },
     {
-        title: 'Realidad Aumentada',
-        description: 'Toca el botón AR para ver productos en tu espacio',
+        titleKey: 'onboarding.step3.title',
+        descriptionKey: 'onboarding.step3.desc',
         icon: (
             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -37,8 +38,8 @@ const steps: OnboardingStep[] = [
         )
     },
     {
-        title: 'Favoritos y Carrito',
-        description: 'Guarda tus productos favoritos y agrégalos al carrito',
+        titleKey: 'onboarding.step4.title',
+        descriptionKey: 'onboarding.step4.desc',
         icon: (
             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -48,6 +49,7 @@ const steps: OnboardingStep[] = [
 ]
 
 const Onboarding: React.FC = () => {
+    const { t } = useTranslation()
     const [currentStep, setCurrentStep] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
 
@@ -94,7 +96,7 @@ const Onboarding: React.FC = () => {
                         <button
                             onClick={handleSkip}
                             className="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
-                            aria-label="Cerrar"
+                            aria-label={t('common.close') || 'Close'}
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -115,11 +117,11 @@ const Onboarding: React.FC = () => {
                                 </div>
 
                                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                                    {steps[currentStep].title}
+                                    {t(steps[currentStep].titleKey)}
                                 </h2>
 
                                 <p className="text-base text-gray-700 dark:text-gray-300 mb-8">
-                                    {steps[currentStep].description}
+                                    {t(steps[currentStep].descriptionKey)}
                                 </p>
 
                                 <div className="flex gap-2 justify-center mb-6">
@@ -140,14 +142,14 @@ const Onboarding: React.FC = () => {
                                             onClick={() => setCurrentStep(currentStep - 1)}
                                             className="btn-secondary flex-1"
                                         >
-                                            Atrás
+                                            {t('onboarding.back')}
                                         </button>
                                     )}
                                     <button
                                         onClick={handleNext}
                                         className="btn-primary flex-1"
                                     >
-                                        {currentStep === steps.length - 1 ? '¡Comenzar!' : 'Siguiente'}
+                                        {currentStep === steps.length - 1 ? t('onboarding.start') : t('onboarding.next')}
                                     </button>
                                 </div>
 
@@ -156,7 +158,7 @@ const Onboarding: React.FC = () => {
                                         onClick={handleSkip}
                                         className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 mt-4 transition-colors"
                                     >
-                                        Saltar tutorial
+                                        {t('onboarding.skip')}
                                     </button>
                                 )}
                             </motion.div>
