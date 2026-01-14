@@ -1,9 +1,9 @@
 import { ModelMetadata } from '@/hooks/useModels'
 
-import chairUrl from '../assets/models/Chair.glb?url'
-import boxUrl from '../assets/models/Box.glb?url'
-import lanternUrl from '../assets/models/Lantern.glb?url'
-import boxAnimatedUrl from '../assets/models/BoxAnimated.glb?url'
+const chairUrl = new URL('../assets/models/Chair.glb', import.meta.url).href
+const boxUrl = new URL('../assets/models/Box.glb', import.meta.url).href
+const lanternUrl = new URL('../assets/models/Lantern.glb', import.meta.url).href
+const boxAnimatedUrl = new URL('../assets/models/BoxAnimated.glb', import.meta.url).href
 
 export const mockModels: ModelMetadata[] = [
   {
