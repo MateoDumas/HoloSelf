@@ -102,7 +102,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Coche Clásico de Juguete',
     description: 'Modelo a escala de coche clásico fabricado con gran detalle. Perfecto para coleccionistas y niños.',
     glb_url: carUrl,
-    thumbnail: 'https://images.pexels.com/photos/35967/pexels-photo-35967.jpeg?auto=compress&cs=tinysrgb&w=400',
+    thumbnail: 'https://images.pexels.com/photos/11292464/pexels-photo-11292464.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 89.99,
     meta: {
       category: 'juguetes',
