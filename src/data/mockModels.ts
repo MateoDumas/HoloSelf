@@ -68,7 +68,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Radio BoomBox Retro',
     description: 'Radio portátil estilo años 80 con altavoces de alta fidelidad. Combina diseño retro con tecnología de audio moderna.',
     glb_url: radioUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1622627053535-645391694f27?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1598153346810-860daa814c4b?w=400&auto=format&fit=crop',
     price: 199.99,
     meta: {
       category: 'electrónica',
@@ -85,7 +85,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Candelabro de Vidrio',
     description: 'Candelabro decorativo de vidrio soplado para velas grandes. Crea un ambiente cálido y acogedor.',
     glb_url: candleUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1602525547493-2c095727195c?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1516655855035-d5215bcb5604?w=400&auto=format&fit=crop',
     price: 49.99,
     meta: {
       category: 'decoración',
@@ -102,7 +102,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Coche Clásico de Juguete',
     description: 'Modelo a escala de coche clásico fabricado con gran detalle. Perfecto para coleccionistas y niños.',
     glb_url: carUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1532339142463-fd0a8979791a?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=400&auto=format&fit=crop',
     price: 89.99,
     meta: {
       category: 'juguetes',
