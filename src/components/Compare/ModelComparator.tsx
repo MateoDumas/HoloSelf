@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ModelMetadata } from '@/hooks/useModels'
 import Viewer from '@/components/Viewer'
-import { X } from 'lucide-react'
+import { X as XIcon } from 'lucide-react'
 
 interface ModelComparatorProps {
   models: ModelMetadata[]

@@ -4,6 +4,7 @@ import { ModelMetadata } from '@/hooks/useModels'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
 import { useCartStore } from '@/store/useCartStore'
+import { toast } from 'react-hot-toast'
 
 interface ModelCardProps {
   model: ModelMetadata
@@ -22,6 +23,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
       glb_url: model.glb_url,
       thumbnail: model.thumbnail,
     })
+    toast.success('Añadido al carrito')
   }
 
   return (

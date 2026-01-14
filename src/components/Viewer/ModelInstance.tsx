@@ -26,13 +26,13 @@ const ModelLoader: React.FC<{ url: string }> = ({ url }) => {
         }
       })
     }
-  }, [scene])
+  }, [scene, url])
 
   React.useEffect(() => {
     if (error) {
       console.error('❌ Error al cargar modelo con useGLTF:', url, error)
     }
-  }, [error])
+  }, [error, url])
 
   return <primitive object={scene} dispose={null} />
 }

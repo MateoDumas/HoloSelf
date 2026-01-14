@@ -6,6 +6,7 @@ import Favorites from './pages/Favorites'
 import Cart from './pages/Cart'
 import History from './pages/History'
 import { useThemeStore } from './store/useThemeStore'
+import Layout from './components/Layout/Layout'
 
 // Base path para GitHub Pages (debe coincidir con el nombre del repositorio)
 // En Vercel, BASE_URL será '/' automáticamente
@@ -20,13 +21,15 @@ function App() {
 
   return (
     <BrowserRouter basename={basePath}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/history" element={<History />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/history" element={<History />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   )
 }

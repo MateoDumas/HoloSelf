@@ -4,16 +4,16 @@ import { useModel } from '@/hooks/useModels'
 import Viewer from '@/components/Viewer'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
-import VariantSelector from '@/components/Viewer/VariantSelector'
 import SimilarProducts from '@/components/Recommendations/SimilarProducts'
 import { useHistoryStore } from '@/store/useHistoryStore'
 import { useCartStore } from '@/store/useCartStore'
+import { toast } from 'react-hot-toast'
+import { ArrowLeft } from 'lucide-react'
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const { data: model, isLoading, error } = useModel(id || '')
   const [autoRotate, setAutoRotate] = useState(false)
-  const [selectedVariant, setSelectedVariant] = useState<string | undefined>()
   const [currentModelUrl, setCurrentModelUrl] = useState<string>('')
   const { addViewedProduct } = useHistoryStore()
   const { addItem } = useCartStore()
@@ -30,11 +30,6 @@ const ProductPage: React.FC = () => {
     }
   }, [model])
 
-  const handleVariantChange = (variantId: string, glbUrl: string) => {
-    setSelectedVariant(variantId)
-    setCurrentModelUrl(glbUrl)
-  }
-
   const handleAddToCart = () => {
     if (model) {
       addItem({
@@ -44,6 +39,10 @@ const ProductPage: React.FC = () => {
         glb_url: model.glb_url,
         thumbnail: model.thumbnail,
       })
+      toast.success('¡Producto añadido al carrito!', {
+        icon: '🛍️',
+        duration: 3000,
+      })
     }
   }
 
@@ -51,27 +50,8 @@ const ProductPage: React.FC = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <svg
-            className="animate-spin h-12 w-12 text-primary-600 mx-auto mb-4"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
-          <p className="text-gray-600">Cargando producto...</p>
+          <div className="animate-spin h-12 w-12 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4" />
+          <p className="text-gray-600 dark:text-gray-400">Cargando producto...</p>
         </div>
       </div>
     )
@@ -82,7 +62,7 @@ const ProductPage: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 mb-4">Error al cargar el producto</p>
-          <Link to="/" className="btn-primary">
+          <Link to="/" className="text-blue-600 hover:underline">
             Volver al catálogo
           </Link>
         </div>
@@ -91,132 +71,119 @@ const ProductPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <header className="bg-white dark:bg-gray-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 inline-flex items-center gap-2"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Volver al catálogo
-          </Link>
-        </div>
-      </header>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Back Link */}
+      <Link
+        to="/"
+        className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-6"
+      >
+        <ArrowLeft className="w-5 h-5 mr-2" />
+        Volver al catálogo
+      </Link>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Viewer 3D */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
-            <div className="absolute top-4 right-4 z-10">
-              <FavoriteButton productId={model.id} />
-            </div>
-            <div className="aspect-square relative">
-              <Viewer
-                modelUrl={currentModelUrl || model.glb_url}
-                autoRotate={autoRotate}
-                enableAR={true}
-                className="w-full h-full"
-              />
-            </div>
-            
-            {/* Controles del viewer */}
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setAutoRotate(!autoRotate)}
-                  className={`btn-secondary flex-1 ${
-                    autoRotate ? 'bg-primary-100 text-primary-700' : ''
-                  }`}
-                >
-                  {autoRotate ? '⏸ Detener rotación' : '▶ Rotar automático'}
-                </button>
-                <ARButton
-                  modelUrl={currentModelUrl || model.glb_url}
-                  modelTitle={model.title}
-                  className="flex-1"
-                />
-              </div>
-            </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Viewer 3D */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden relative">
+          <div className="absolute top-4 right-4 z-10">
+            <FavoriteButton productId={model.id} />
           </div>
-
-          {/* Información del producto */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              {model.title}
-            </h1>
-
-            {model.description && (
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Descripción
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400">{model.description}</p>
-              </div>
-            )}
-
-            {model.price && (
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                  Precio
-                </h2>
-                <p className="text-3xl font-bold text-primary-600">
-                  ${model.price.toLocaleString()}
-                </p>
-              </div>
-            )}
-
-            {model.meta?.dimensions && (
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                  Dimensiones
-                </h2>
-                <p className="text-gray-600">
-                  {model.meta.dimensions.width} × {model.meta.dimensions.height} ×{' '}
-                  {model.meta.dimensions.depth} cm
-                </p>
-              </div>
-            )}
-
-            <VariantSelector
-              model={model}
-              selectedVariant={selectedVariant}
-              onVariantChange={handleVariantChange}
+          <div className="aspect-square relative bg-gray-50 dark:bg-gray-900/50">
+            <Viewer
+              modelUrl={currentModelUrl || model.glb_url}
+              autoRotate={autoRotate}
+              enableAR={true}
+              className="w-full h-full"
             />
-
-            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
-              {model.price && (
-                <button
-                  onClick={handleAddToCart}
-                  className="btn-primary w-full"
-                >
-                  Agregar al Carrito - ${model.price.toLocaleString()}
-                </button>
-              )}
+          </div>
+          
+          {/* Viewer Controls */}
+          <div className="p-4 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div className="flex gap-3">
+              <button
+                onClick={() => setAutoRotate(!autoRotate)}
+                className={`flex-1 py-2 px-4 rounded-xl text-sm font-medium transition-colors ${
+                  autoRotate 
+                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300' 
+                    : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                {autoRotate ? '⏸ Detener rotación' : '▶ Rotar automático'}
+              </button>
               <ARButton
                 modelUrl={currentModelUrl || model.glb_url}
                 modelTitle={model.title}
-                className="w-full"
+                className="flex-1 py-2 px-4 rounded-xl text-sm font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               />
             </div>
           </div>
         </div>
 
-        {/* Productos similares */}
-        <SimilarProducts currentModel={model} />
-      </main>
+        {/* Product Details */}
+        <div className="space-y-8">
+          <div>
+            <div className="flex items-start justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  {model.title}
+                </h1>
+                <p className="text-2xl font-semibold text-blue-600 dark:text-blue-400">
+                  ${model.price.toFixed(2)}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                {model.meta?.tags?.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 prose dark:prose-invert max-w-none">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                {model.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Action Button */}
+          <button
+            onClick={handleAddToCart}
+            className="w-full py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            Agregar al Carrito
+          </button>
+
+          {/* Dimensions */}
+          {model.meta?.dimensions && (
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-100 dark:border-gray-700">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Dimensiones</h3>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                  <span className="block text-xs text-gray-500 uppercase tracking-wide">Alto</span>
+                  <span className="block text-lg font-medium text-gray-900 dark:text-white">{model.meta.dimensions.height} cm</span>
+                </div>
+                <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                  <span className="block text-xs text-gray-500 uppercase tracking-wide">Ancho</span>
+                  <span className="block text-lg font-medium text-gray-900 dark:text-white">{model.meta.dimensions.width} cm</span>
+                </div>
+                <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                  <span className="block text-xs text-gray-500 uppercase tracking-wide">Profundidad</span>
+                  <span className="block text-lg font-medium text-gray-900 dark:text-white">{model.meta.dimensions.depth} cm</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <SimilarProducts currentProductId={model.id} category={model.meta?.category || ''} />
+        </div>
+      </div>
     </div>
   )
 }
