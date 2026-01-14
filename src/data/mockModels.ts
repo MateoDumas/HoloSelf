@@ -85,7 +85,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Candelabro de Vidrio',
     description: 'Candelabro decorativo de vidrio soplado para velas grandes. Crea un ambiente cálido y acogedor.',
     glb_url: candleUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1516655855035-d5215bcb5604?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.pexels.com/photos/698921/pexels-photo-698921.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 49.99,
     meta: {
       category: 'decoración',
