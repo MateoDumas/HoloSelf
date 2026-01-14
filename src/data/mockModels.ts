@@ -1,9 +1,9 @@
 import { ModelMetadata } from '@/hooks/useModels'
 
-const chairUrl = new URL('../assets/models/Chair.glb', import.meta.url).href
-const boxUrl = new URL('../assets/models/Box.glb', import.meta.url).href
-const lanternUrl = new URL('../assets/models/Lantern.glb', import.meta.url).href
-const boxAnimatedUrl = new URL('../assets/models/BoxAnimated.glb', import.meta.url).href
+const chairUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/SheenChair/glTF-Binary/SheenChair.glb'
+const boxUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF-Binary/Box.glb'
+const lanternUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb'
+const boxAnimatedUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxAnimated/glTF-Binary/BoxAnimated.glb'
 
 export const mockModels: ModelMetadata[] = [
   {
