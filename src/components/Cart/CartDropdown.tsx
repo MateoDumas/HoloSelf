@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/store/useCartStore'
 
 interface CartDropdownProps {
@@ -11,10 +12,27 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
 
   if (items.length === 0) {
     return (
-      <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 p-4">
-        <p className="text-gray-600 dark:text-gray-400 text-center">
-          Tu carrito está vacío
-        </p>
+      <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 z-50 p-4">
+        <div className="flex flex-col items-center text-center space-y-3">
+          <div className="w-12 h-12 rounded-full bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+            <ShoppingBag className="w-6 h-6 text-gray-400 dark:text-gray-500" />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Tu carrito está vacío
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              Añade productos desde el catálogo para verlos aquí.
+            </p>
+          </div>
+          <Link
+            to="/"
+            onClick={onClose}
+            className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 transition-all hover:scale-105 shadow-md shadow-blue-500/30"
+          >
+            Ir al catálogo
+          </Link>
+        </div>
       </div>
     )
   }
