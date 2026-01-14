@@ -1,126 +1,116 @@
 import { ModelMetadata } from '@/hooks/useModels'
 
-const chairUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/SheenChair/glTF-Binary/SheenChair.glb'
-const boxUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF-Binary/Box.glb'
-const lanternUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb'
-const boxAnimatedUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxAnimated/glTF-Binary/BoxAnimated.glb'
+// Modelos 3D de Khronos Sample Assets (Stable URLs)
+const chairUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb'
+const lampUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AnisotropyBarnLamp/glTF-Binary/AnisotropyBarnLamp.glb'
+const cameraUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AntiqueCamera/glTF-Binary/AntiqueCamera.glb'
+const radioUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb'
+const candleUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlassHurricaneCandleHolder/glTF-Binary/GlassHurricaneCandleHolder.glb'
+const carUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ToyCar/glTF-Binary/ToyCar.glb'
 
 export const mockModels: ModelMetadata[] = [
   {
     id: '1',
-    title: 'Silla Moderna',
-    description: 'Silla ergonómica de diseño moderno con soporte lumbar ajustable.',
+    title: 'Silla Sheen Premium',
+    description: 'Silla de diseño con tapizado de terciopelo suave y patas doradas. Perfecta para dar un toque elegante a cualquier habitación.',
     glb_url: chairUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&auto=format&fit=crop',
     price: 299.99,
     meta: {
-      category: 'sillas',
-      tags: ['ergonómica', 'moderna', 'oficina'],
+      category: 'muebles',
+      tags: ['premium', 'terciopelo', 'diseño'],
       dimensions: {
         width: 50,
         height: 100,
         depth: 50,
       },
       variants: [
-        { id: 'v1', name: 'Negro', glb_url: chairUrl },
-        { id: 'v2', name: 'Blanco', glb_url: chairUrl },
+        { id: 'v1', name: 'Mango', glb_url: chairUrl },
       ],
     },
   },
   {
     id: '2',
-    title: 'Mesa de Centro',
-    description: 'Mesa de centro de madera maciza con acabado natural.',
-    glb_url: boxUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=400&auto=format&fit=crop',
-    price: 449.99,
+    title: 'Lámpara Industrial',
+    description: 'Lámpara colgante de estilo industrial con acabado metálico desgastado. Ideal para cocinas y comedores modernos.',
+    glb_url: lampUrl,
+    thumbnail: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&auto=format&fit=crop',
+    price: 129.99,
     meta: {
-      category: 'mesas',
-      tags: ['madera', 'centro', 'sala'],
+      category: 'iluminación',
+      tags: ['industrial', 'metal', 'colgante'],
       dimensions: {
-        width: 120,
-        height: 45,
-        depth: 60,
+        width: 30,
+        height: 40,
+        depth: 30,
       },
     },
   },
   {
     id: '3',
-    title: 'Lámpara de Pie',
-    description: 'Lámpara de pie con diseño minimalista y luz LED regulable.',
-    glb_url: lanternUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&auto=format&fit=crop',
-    price: 179.99,
+    title: 'Cámara Vintage',
+    description: 'Cámara fotográfica antigua de colección con trípode de madera. Una pieza única para amantes de la fotografía.',
+    glb_url: cameraUrl,
+    thumbnail: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&auto=format&fit=crop',
+    price: 599.99,
     meta: {
-      category: 'iluminación',
-      tags: ['LED', 'minimalista', 'moderna'],
+      category: 'decoración',
+      tags: ['vintage', 'coleccionable', 'fotografía'],
       dimensions: {
-        width: 30,
-        height: 160,
+        width: 40,
+        height: 30,
         depth: 30,
       },
     },
   },
   {
     id: '4',
-    title: 'Sofá Modular',
-    description: 'Sofá modular de 3 plazas con tapizado en tela premium.',
-    glb_url: boxAnimatedUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop',
-    price: 1299.99,
+    title: 'Radio BoomBox Retro',
+    description: 'Radio portátil estilo años 80 con altavoces de alta fidelidad. Combina diseño retro con tecnología de audio moderna.',
+    glb_url: radioUrl,
+    thumbnail: 'https://images.unsplash.com/photo-1622627053535-645391694f27?w=400&auto=format&fit=crop',
+    price: 199.99,
     meta: {
-      category: 'sofás',
-      tags: ['modular', 'premium', 'sala'],
+      category: 'electrónica',
+      tags: ['retro', 'audio', '80s'],
       dimensions: {
-        width: 240,
-        height: 85,
-        depth: 95,
+        width: 60,
+        height: 35,
+        depth: 20,
       },
-      variants: [
-        {
-          id: 'v1',
-          name: 'Gris',
-          glb_url: boxAnimatedUrl,
-        },
-        {
-          id: 'v2',
-          name: 'Beige',
-          glb_url: boxAnimatedUrl,
-        },
-      ],
     },
   },
   {
     id: '5',
-    title: 'Estantería Flotante',
-    description: 'Estantería flotante de diseño escandinavo con 4 niveles.',
-    glb_url: boxUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&auto=format&fit=crop',
-    price: 349.99,
+    title: 'Candelabro de Vidrio',
+    description: 'Candelabro decorativo de vidrio soplado para velas grandes. Crea un ambiente cálido y acogedor.',
+    glb_url: candleUrl,
+    thumbnail: 'https://images.unsplash.com/photo-1602525547493-2c095727195c?w=400&auto=format&fit=crop',
+    price: 49.99,
     meta: {
-      category: 'estanterías',
-      tags: ['flotante', 'escandinavo', 'madera'],
+      category: 'decoración',
+      tags: ['vidrio', 'vela', 'hogar'],
       dimensions: {
-        width: 100,
-        height: 180,
-        depth: 30,
+        width: 15,
+        height: 25,
+        depth: 15,
       },
     },
   },
   {
     id: '6',
-    title: 'Escritorio Ejecutivo',
-    description: 'Escritorio ejecutivo de roble con cajones laterales.',
-    glb_url: boxUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&auto=format&fit=crop',
-    price: 899.99,
+    title: 'Coche Clásico de Juguete',
+    description: 'Modelo a escala de coche clásico fabricado con gran detalle. Perfecto para coleccionistas y niños.',
+    glb_url: carUrl,
+    thumbnail: 'https://images.unsplash.com/photo-1532339142463-fd0a8979791a?w=400&auto=format&fit=crop',
+    price: 89.99,
     meta: {
-      category: 'escritorios',
-      tags: ['ejecutivo', 'roble', 'oficina'],
+      category: 'juguetes',
+      tags: ['clásico', 'coleccionable', 'niños'],
       dimensions: {
-        width: 160,
-        height: 75,
-        depth: 70,
+        width: 10,
+        height: 8,
+        depth: 20,
       },
     },
   },
