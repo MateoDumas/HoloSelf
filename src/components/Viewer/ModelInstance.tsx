@@ -9,13 +9,15 @@ interface ModelInstanceProps {
 
 // Componente interno que maneja la carga del modelo
 const ModelLoader: React.FC<{ url: string }> = ({ url }) => {
-  const { scene } = useGLTF(url) as any
+  console.log('🔄 Iniciando carga del modelo desde:', url)
+  const { scene, error } = useGLTF(url) as any
 
   React.useEffect(() => {
     if (scene) {
+      console.log('✅ Modelo cargado exitosamente:', url)
       // Centrar y escalar el modelo
       centerAndScaleModel(scene, 2)
-      
+
       // Configurar sombras
       scene.traverse((child: THREE.Object3D) => {
         if (child instanceof THREE.Mesh) {
@@ -25,6 +27,12 @@ const ModelLoader: React.FC<{ url: string }> = ({ url }) => {
       })
     }
   }, [scene])
+
+  React.useEffect(() => {
+    if (error) {
+      console.error('❌ Error al cargar modelo con useGLTF:', url, error)
+    }
+  }, [error])
 
   return <primitive object={scene} dispose={null} />
 }
@@ -86,19 +94,22 @@ const ErrorCatcher: React.FC<{ children: React.ReactNode; url: string }> = ({ ch
     // Intentar cargar el modelo para verificar si está disponible
     const checkModel = async () => {
       try {
+        console.log('🔍 Checking model availability:', url)
         const response = await fetch(url, { method: 'HEAD' })
+        console.log('🔍 Model check response:', response.status, response.statusText)
         if (!response.ok) {
+          console.error('❌ Model not available:', url, response.status)
           setHasError(true)
           if (response.status === 404) {
             setErrorMessage('El archivo del modelo no se encontró en el servidor (404)')
           } else {
             setErrorMessage(`Error al acceder al modelo: ${response.status}`)
           }
+        } else {
+          console.log('✅ Model available:', url)
         }
       } catch (err: any) {
-        // Si falla el fetch, aún intentar cargar con useGLTF
-        // ya que algunos servidores no permiten HEAD
-        console.warn('No se pudo verificar el modelo:', err)
+        console.warn('⚠️ Could not verify model:', url, err.message)
       }
     }
 

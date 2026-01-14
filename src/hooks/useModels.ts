@@ -45,12 +45,14 @@ export function useModels(page: number = 1, pageSize: number = 20) {
     queryFn: async () => {
       // Usar datos mock si está explícitamente configurado
       if (USE_MOCK_DATA) {
+        console.log('📊 Using mock data for models list (VITE_USE_MOCK=true)')
         await new Promise((resolve) => setTimeout(resolve, 500))
         return getMockModels(page, pageSize)
       }
 
       // Intentar conectar con la API
       try {
+        console.log('🌐 Attempting to fetch models from API:', `${API_URL}/models`)
         const response = await axios.get<ModelsResponse>(
           `${API_URL}/models`,
           {
@@ -58,8 +60,10 @@ export function useModels(page: number = 1, pageSize: number = 20) {
             timeout: 5000, // 5 segundos de timeout
           }
         )
+        console.log('✅ API fetch successful for models')
         return response.data
       } catch (error) {
+        console.log('⚠️ API fetch failed, falling back to mock data:', String(error))
         // Fallback automático a datos mock si la API falla
         console.warn('⚠️ No se pudo conectar con la API, usando datos de demostración:', error)
         await new Promise((resolve) => setTimeout(resolve, 500))
@@ -79,6 +83,7 @@ export function useModel(id: string) {
     queryFn: async () => {
       // Usar datos mock si está explícitamente configurado
       if (USE_MOCK_DATA) {
+        console.log('📊 Using mock data for model', id, '(VITE_USE_MOCK=true)')
         await new Promise((resolve) => setTimeout(resolve, 300))
         const model = getMockModel(id)
         if (!model) {
@@ -89,14 +94,17 @@ export function useModel(id: string) {
 
       // Intentar conectar con la API
       try {
+        console.log('🌐 Attempting to fetch model from API:', `${API_URL}/models/${id}`)
         const response = await axios.get<ModelMetadata>(
           `${API_URL}/models/${id}`,
           {
             timeout: 5000, // 5 segundos de timeout
           }
         )
+        console.log('✅ API fetch successful for model', id)
         return response.data
       } catch (error) {
+        console.log('⚠️ API fetch failed for model', id, ', falling back to mock:', String(error))
         // Fallback automático a datos mock si la API falla
         console.warn('⚠️ No se pudo conectar con la API, usando datos de demostración:', error)
         await new Promise((resolve) => setTimeout(resolve, 300))
