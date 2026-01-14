@@ -68,7 +68,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Radio BoomBox Retro',
     description: 'Radio portátil estilo años 80 con altavoces de alta fidelidad. Combina diseño retro con tecnología de audio moderna.',
     glb_url: radioUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1598153346810-860daa814c4b?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.pexels.com/photos/18611257/pexels-photo-18611257.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 199.99,
     meta: {
       category: 'electrónica',
@@ -102,7 +102,7 @@ export const mockModels: ModelMetadata[] = [
     title: 'Coche Clásico de Juguete',
     description: 'Modelo a escala de coche clásico fabricado con gran detalle. Perfecto para coleccionistas y niños.',
     glb_url: carUrl,
-    thumbnail: 'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=400&auto=format&fit=crop',
+    thumbnail: 'https://images.pexels.com/photos/35967/pexels-photo-35967.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 89.99,
     meta: {
       category: 'juguetes',
