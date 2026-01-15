@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useCartStore } from '@/store/useCartStore'
 import CartDropdown from './CartDropdown'
 import { ShoppingBag } from 'lucide-react'
+import { AnimatePresence } from 'framer-motion'
 
 const CartButton: React.FC = () => {
   const { getItemCount } = useCartStore()
@@ -48,7 +49,9 @@ const CartButton: React.FC = () => {
           </span>
         )}
       </button>
-      {isOpen && <CartDropdown onClose={() => setIsOpen(false)} />}
+      <AnimatePresence>
+        {isOpen && <CartDropdown onClose={() => setIsOpen(false)} />}
+      </AnimatePresence>
     </div>
   )
 }

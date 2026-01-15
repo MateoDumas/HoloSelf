@@ -33,6 +33,13 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
       </div>
       <Link to={`/product/${model.id}`}>
         <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 overflow-hidden">
+          {model.glb_url && (
+            <div className="absolute top-2 left-2 z-10">
+              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 text-[10px] font-medium uppercase tracking-wide text-white backdrop-blur-sm">
+                AR
+              </span>
+            </div>
+          )}
           {model.thumbnail ? (
             <img
               src={model.thumbnail}

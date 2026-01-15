@@ -12,10 +12,11 @@ interface CatalogListProps {
 }
 
 const CatalogList: React.FC<CatalogListProps> = ({
-  page = 1,
+  page: initialPage = 1,
   pageSize = 20,
 }) => {
-  const { data, isLoading, error } = useModels(page, pageSize)
+  const [currentPage, setCurrentPage] = useState(initialPage)
+  const { data, isLoading, error } = useModels(currentPage, pageSize)
   const [showFilters, setShowFilters] = useState(false)
 
   const {
@@ -139,25 +140,38 @@ const CatalogList: React.FC<CatalogListProps> = ({
         </div>
       </div>
       
-      {/* Paginación básica - puedes mejorarla después */}
+      {/* Paginación accesible */}
       {data.total > pageSize && (
-        <div className="mt-8 flex justify-center gap-2">
+        <nav
+          className="mt-8 flex justify-center items-center gap-3"
+          aria-label="Paginación del catálogo"
+        >
           <button
-            disabled={page === 1}
-            className="btn-secondary disabled:opacity-50"
+            type="button"
+            onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+            disabled={currentPage === 1}
+            aria-disabled={currentPage === 1}
+            className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Anterior
           </button>
-          <span className="px-4 py-2 text-gray-700">
-            Página {page} de {Math.ceil(data.total / pageSize)}
+          <span className="px-4 py-2 text-gray-700 dark:text-gray-300 text-sm">
+            Página {currentPage} de {Math.ceil(data.total / pageSize)}
           </span>
           <button
-            disabled={page >= Math.ceil(data.total / pageSize)}
-            className="btn-secondary disabled:opacity-50"
+            type="button"
+            onClick={() =>
+              setCurrentPage((prev) =>
+                Math.min(Math.ceil(data.total / pageSize), prev + 1),
+              )
+            }
+            disabled={currentPage >= Math.ceil(data.total / pageSize)}
+            aria-disabled={currentPage >= Math.ceil(data.total / pageSize)}
+            className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Siguiente
           </button>
-        </div>
+        </nav>
       )}
     </div>
   )

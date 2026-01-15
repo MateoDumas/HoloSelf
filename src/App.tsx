@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useEffect } from 'react'
-import Home from './pages/Home'
-import ProductPage from './pages/Product/ProductPage'
-import Favorites from './pages/Favorites'
-import Cart from './pages/Cart'
-import History from './pages/History'
+import { useEffect, Suspense, lazy } from 'react'
 import { useThemeStore } from './store/useThemeStore'
 import Layout from './components/Layout/Layout'
+import LoadingSpinner from './components/UI/LoadingSpinner'
+
+const Home = lazy(() => import('./pages/Home'))
+const ProductPage = lazy(() => import('./pages/Product/ProductPage'))
+const Favorites = lazy(() => import('./pages/Favorites'))
+const Cart = lazy(() => import('./pages/Cart'))
+const History = lazy(() => import('./pages/History'))
 
 // Base path para GitHub Pages (debe coincidir con el nombre del repositorio)
 // En Vercel, BASE_URL será '/' automáticamente
@@ -22,13 +24,21 @@ function App() {
   return (
     <BrowserRouter basename={basePath}>
       <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/history" element={<History />} />
-        </Routes>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center py-20">
+              <LoadingSpinner size="lg" />
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/history" element={<History />} />
+          </Routes>
+        </Suspense>
       </Layout>
     </BrowserRouter>
   )
