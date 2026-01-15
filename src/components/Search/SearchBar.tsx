@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface SearchBarProps {
   onSearch: (query: string) => void
@@ -10,6 +10,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = 'Buscar productos...',
 }) => {
   const [query, setQuery] = useState('')
+  const [isFirstChange, setIsFirstChange] = useState(true)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,8 +20,22 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setQuery(value)
-    onSearch(value)
   }
+
+  useEffect(() => {
+    if (isFirstChange) {
+      if (query === '') return
+      setIsFirstChange(false)
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      onSearch(query)
+    }, 300)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [query, onSearch, isFirstChange])
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
@@ -50,9 +65,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
             type="button"
             onClick={() => {
               setQuery('')
+              setIsFirstChange(true)
               onSearch('')
             }}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            aria-label="Limpiar búsqueda"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

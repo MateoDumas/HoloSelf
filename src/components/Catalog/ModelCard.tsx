@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ModelMetadata } from '@/hooks/useModels'
+import { ModelMetadata, fetchModelById } from '@/hooks/useModels'
 import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
 import { useCartStore } from '@/store/useCartStore'
 import { toast } from 'react-hot-toast'
 import { ShoppingCart, Box } from 'lucide-react'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface ModelCardProps {
   model: ModelMetadata
@@ -13,6 +14,15 @@ interface ModelCardProps {
 
 const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   const { addItem } = useCartStore()
+  const queryClient = useQueryClient()
+
+  const prefetchModel = () => {
+    queryClient.prefetchQuery({
+      queryKey: ['model', model.id],
+      queryFn: () => fetchModelById(model.id),
+      staleTime: 10 * 60 * 1000,
+    })
+  }
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -43,7 +53,12 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
           </div>
         )}
 
-        <Link to={`/product/${model.id}`} className="block w-full h-full">
+        <Link
+          to={`/product/${model.id}`}
+          className="block w-full h-full"
+          onMouseEnter={prefetchModel}
+          onFocus={prefetchModel}
+        >
           {model.thumbnail ? (
             <img
               src={model.thumbnail}
@@ -64,7 +79,12 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
       
       <div className="p-5 flex flex-col flex-grow">
         <div className="flex-grow">
-          <Link to={`/product/${model.id}`} className="group/title">
+          <Link
+            to={`/product/${model.id}`}
+            className="group/title"
+            onMouseEnter={prefetchModel}
+            onFocus={prefetchModel}
+          >
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover/title:text-blue-600 dark:group-hover/title:text-blue-400 transition-colors">
               {model.title}
             </h3>
@@ -116,4 +136,4 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   )
 }
 
-export default ModelCard
+export default React.memo(ModelCard)

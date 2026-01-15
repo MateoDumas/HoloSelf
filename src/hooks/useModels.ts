@@ -74,6 +74,31 @@ export function useModels(page: number = 1, pageSize: number = 20) {
   })
 }
 
+export async function fetchModelById(id: string): Promise<ModelMetadata> {
+  if (USE_MOCK_DATA) {
+    await new Promise((resolve) => setTimeout(resolve, 300))
+    const model = getMockModel(id)
+    if (!model) {
+      throw new Error('Modelo no encontrado')
+    }
+    return model
+  }
+
+  try {
+    const response = await axios.get<ModelMetadata>(`${API_URL}/models/${id}`, {
+      timeout: 5000,
+    })
+    return response.data
+  } catch (error) {
+    await new Promise((resolve) => setTimeout(resolve, 300))
+    const model = getMockModel(id)
+    if (!model) {
+      throw new Error('Modelo no encontrado')
+    }
+    return model
+  }
+}
+
 /**
  * Hook para obtener un modelo específico por ID
  */
@@ -81,39 +106,8 @@ export function useModel(id: string) {
   return useQuery<ModelMetadata>({
     queryKey: ['model', id],
     queryFn: async () => {
-      // Usar datos mock si está explícitamente configurado
-      if (USE_MOCK_DATA) {
-        console.log('📊 Using mock data for model', id, '(VITE_USE_MOCK=true)')
-        await new Promise((resolve) => setTimeout(resolve, 300))
-        const model = getMockModel(id)
-        if (!model) {
-          throw new Error('Modelo no encontrado')
-        }
-        return model
-      }
-
-      // Intentar conectar con la API
-      try {
-        console.log('🌐 Attempting to fetch model from API:', `${API_URL}/models/${id}`)
-        const response = await axios.get<ModelMetadata>(
-          `${API_URL}/models/${id}`,
-          {
-            timeout: 5000, // 5 segundos de timeout
-          }
-        )
-        console.log('✅ API fetch successful for model', id)
-        return response.data
-      } catch (error) {
-        console.log('⚠️ API fetch failed for model', id, ', falling back to mock:', String(error))
-        // Fallback automático a datos mock si la API falla
-        console.warn('⚠️ No se pudo conectar con la API, usando datos de demostración:', error)
-        await new Promise((resolve) => setTimeout(resolve, 300))
-        const model = getMockModel(id)
-        if (!model) {
-          throw new Error('Modelo no encontrado')
-        }
-        return model
-      }
+      const model = await fetchModelById(id)
+      return model
     },
     enabled: !!id,
     staleTime: 10 * 60 * 1000, // 10 minutos

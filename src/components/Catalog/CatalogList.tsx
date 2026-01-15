@@ -31,6 +31,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
     sortBy,
     setSortBy,
     filteredModels,
+    resetFilters,
   } = useSearchAndFilter({
     models: data?.models || [],
   })
@@ -68,9 +69,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
     )
   }
 
-  const displayModels = searchQuery || selectedCategory || selectedTags.length > 0
-    ? filteredModels
-    : data?.models || []
+  const displayModels = filteredModels
 
   return (
     <div>
@@ -121,6 +120,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
               onCategoryChange={setSelectedCategory}
               onTagToggle={toggleTag}
               onPriceRangeChange={setPriceRange}
+              onReset={resetFilters}
             />
           </div>
         )}
@@ -131,10 +131,24 @@ const CatalogList: React.FC<CatalogListProps> = ({
             ))}
           </div>
           {displayModels.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-600 dark:text-gray-400">
-                No se encontraron productos con los filtros seleccionados
+            <div className="text-center py-20 bg-gray-50 dark:bg-gray-800/50 rounded-3xl border border-dashed border-gray-200 dark:border-gray-700">
+              <div className="mx-auto w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
+                No se encontraron productos
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-6 max-w-sm mx-auto">
+                Intenta ajustar los filtros o la búsqueda para encontrar lo que buscas.
               </p>
+              <button
+                onClick={resetFilters}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-blue-700 bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/50 transition-colors"
+              >
+                Limpiar filtros
+              </button>
             </div>
           )}
         </div>

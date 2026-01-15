@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from './App.tsx'
 import './styles/globals.css'
+import './i18n'
 
 // Inicializar tema al cargar
 const savedTheme = localStorage.getItem('holoself-theme')

@@ -8,7 +8,8 @@ import SimilarProducts from '@/components/Recommendations/SimilarProducts'
 import { useHistoryStore } from '@/store/useHistoryStore'
 import { useCartStore } from '@/store/useCartStore'
 import { toast } from 'react-hot-toast'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ShoppingCart, Star, Share2 } from 'lucide-react'
+import SkeletonLoader from '@/components/UI/SkeletonLoader'
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -48,10 +49,41 @@ const ProductPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin h-12 w-12 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">Cargando producto...</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back Link Skeleton */}
+        <div className="mb-6 w-32">
+          <SkeletonLoader type="text" className="h-6" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          {/* Viewer Skeleton */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden aspect-square">
+            <SkeletonLoader type="image" className="w-full h-full" />
+          </div>
+
+          {/* Info Skeleton */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <SkeletonLoader type="text" className="w-20 h-5" /> {/* Category */}
+              <SkeletonLoader type="text" className="w-3/4 h-10" /> {/* Title */}
+              <div className="flex gap-4">
+                <SkeletonLoader type="text" className="w-24 h-6" /> {/* Rating */}
+              </div>
+            </div>
+
+            <SkeletonLoader type="text" className="w-32 h-10" /> {/* Price */}
+
+            <div className="space-y-2">
+              <SkeletonLoader type="text" className="w-full" />
+              <SkeletonLoader type="text" className="w-full" />
+              <SkeletonLoader type="text" className="w-2/3" />
+            </div>
+
+            <div className="flex gap-4 pt-6">
+              <SkeletonLoader type="button" className="flex-1 h-12" />
+              <SkeletonLoader type="button" className="flex-1 h-12" />
+            </div>
+          </div>
         </div>
       </div>
     )

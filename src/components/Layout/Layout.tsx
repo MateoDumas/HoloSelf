@@ -20,11 +20,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Toaster 
         position="bottom-right"
         toastOptions={{
-          style: {
-            background: '#333',
-            color: '#fff',
+          duration: 4000,
+          className: '!bg-white dark:!bg-gray-800 !text-gray-900 dark:!text-white !shadow-lg !rounded-xl border border-gray-100 dark:border-gray-700',
+          style: {},
+          success: {
+            iconTheme: {
+              primary: '#2563eb',
+              secondary: '#eff6ff',
+            },
+            className: '!border-l-4 !border-l-blue-600',
           },
-          className: 'dark:bg-gray-800 dark:text-white',
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fef2f2',
+            },
+            className: '!border-l-4 !border-l-red-500',
+          },
         }}
       />
     </div>

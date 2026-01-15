@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/store/useCartStore'
+import { toast } from 'react-hot-toast'
 import { motion } from 'framer-motion'
 
 interface CartDropdownProps {
@@ -60,7 +61,11 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
           Carrito ({items.length})
         </h3>
         <button
-          onClick={clearCart}
+          type="button"
+          onClick={() => {
+            clearCart()
+            toast.success('Carrito vaciado')
+          }}
           className="text-sm text-red-600 dark:text-red-400 hover:underline"
         >
           Vaciar
@@ -77,6 +82,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
                 src={item.thumbnail}
                 alt={item.title}
                 className="w-16 h-16 object-cover rounded"
+                loading="lazy"
               />
             )}
             <div className="flex-1">
@@ -90,8 +96,10 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
               )}
               <div className="flex items-center gap-2 mt-2">
                 <button
+                  type="button"
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
                   className="w-6 h-6 rounded border border-gray-300 dark:border-gray-600 flex items-center justify-center"
+                  aria-label="Disminuir cantidad"
                 >
                   -
                 </button>
@@ -99,14 +107,18 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
                   {item.quantity}
                 </span>
                 <button
+                  type="button"
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
                   className="w-6 h-6 rounded border border-gray-300 dark:border-gray-600 flex items-center justify-center"
+                  aria-label="Aumentar cantidad"
                 >
                   +
                 </button>
                 <button
+                  type="button"
                   onClick={() => removeItem(item.id)}
                   className="ml-auto text-red-600 dark:text-red-400 text-sm hover:underline"
+                  aria-label="Eliminar producto"
                 >
                   Eliminar
                 </button>

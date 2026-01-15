@@ -73,6 +73,14 @@ export function useSearchAndFilter({ models }: UseSearchAndFilterProps) {
     )
   }
 
+  const resetFilters = () => {
+    setSearchQuery('')
+    setSelectedCategory(null)
+    setSelectedTags([])
+    setPriceRange([0, 2000])
+    setSortBy('name')
+  }
+
   return {
     searchQuery,
     setSearchQuery,
@@ -85,5 +93,6 @@ export function useSearchAndFilter({ models }: UseSearchAndFilterProps) {
     sortBy,
     setSortBy,
     filteredModels,
+    resetFilters,
   }
 }

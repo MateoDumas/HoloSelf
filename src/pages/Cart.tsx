@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCartStore } from '@/store/useCartStore'
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 
 const Cart: React.FC = () => {
   const { items, removeItem, updateQuantity, getTotal, clearCart } = useCartStore()
@@ -14,7 +15,10 @@ const Cart: React.FC = () => {
         </h1>
         {items.length > 0 && (
           <button
-            onClick={clearCart}
+            onClick={() => {
+              clearCart()
+              toast.success('Carrito vaciado')
+            }}
             className="self-start sm:self-auto text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium transition-colors"
           >
             Vaciar carrito
@@ -55,6 +59,7 @@ const Cart: React.FC = () => {
                       src={item.thumbnail}
                       alt={item.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
 
