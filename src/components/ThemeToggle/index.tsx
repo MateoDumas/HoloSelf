@@ -10,6 +10,7 @@ const ThemeToggle: React.FC = () => {
       onClick={toggleTheme}
       className="p-2 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       aria-label="Alternar tema"
+      aria-pressed={theme === 'dark'}
     >
       {theme === 'light' ? (
         <Moon className="w-5 h-5" />
@@ -18,6 +19,6 @@ const ThemeToggle: React.FC = () => {
       )}
     </button>
   )
-}
+} 
 
 export default ThemeToggle

@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group" aria-label="Ir al inicio">
             <div className="bg-blue-600 p-1.5 rounded-lg group-hover:scale-110 transition-transform">
               <Box className="w-6 h-6 text-white" />
             </div>
@@ -42,6 +42,7 @@ const Navbar: React.FC = () => {
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
               }`}
               title="Historial"
+              aria-current={isActive('/history') ? 'page' : undefined}
             >
               <History className="w-5 h-5" />
             </Link>
@@ -54,6 +55,7 @@ const Navbar: React.FC = () => {
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
               }`}
               title="Favoritos"
+              aria-current={isActive('/favorites') ? 'page' : undefined}
             >
               <Heart className="w-5 h-5" />
               {favorites.length > 0 && (

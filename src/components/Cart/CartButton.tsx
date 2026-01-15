@@ -15,8 +15,17 @@ const CartButton: React.FC = () => {
         setIsOpen(false)
       }
     }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false)
+      }
+    }
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
   }, [])
 
   return (
@@ -29,6 +38,8 @@ const CartButton: React.FC = () => {
             : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
         }`}
         aria-label="Carrito de compras"
+        aria-expanded={isOpen}
+        aria-controls="cart-dropdown"
       >
         <ShoppingBag className="w-5 h-5" />
         {itemCount > 0 && (

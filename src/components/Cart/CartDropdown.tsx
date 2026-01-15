@@ -38,7 +38,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
   }
 
   return (
-    <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+    <div id="cart-dropdown" role="menu" aria-label="Carrito" className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 z-50 max-h-96 overflow-y-auto">
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <h3 className="font-semibold text-gray-900 dark:text-gray-100">
           Carrito ({items.length})

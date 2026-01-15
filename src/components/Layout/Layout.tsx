@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { Toaster } from 'react-hot-toast'
+import SkipToContent from '@/components/UI/SkipToContent'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -10,8 +11,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col transition-colors duration-200">
+      <SkipToContent targetId="main-content" />
       <Navbar />
-      <main className="flex-grow">
+      <main id="main-content" tabIndex={-1} className="flex-grow">
         {children}
       </main>
       <Footer />
