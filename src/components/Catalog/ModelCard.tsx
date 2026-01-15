@@ -5,6 +5,7 @@ import ARButton from '@/components/ARButton'
 import FavoriteButton from '@/components/Favorites/FavoriteButton'
 import { useCartStore } from '@/store/useCartStore'
 import { toast } from 'react-hot-toast'
+import { ShoppingCart, Box } from 'lucide-react'
 
 interface ModelCardProps {
   model: ModelMetadata
@@ -27,85 +28,88 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   }
 
   return (
-    <div className="card relative group hover:scale-105 transition-transform duration-300">
-      <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-        <FavoriteButton productId={model.id} />
-      </div>
-      <Link to={`/product/${model.id}`}>
-        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 overflow-hidden">
-          {model.glb_url && (
-            <div className="absolute top-2 left-2 z-10">
-              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 text-[10px] font-medium uppercase tracking-wide text-white backdrop-blur-sm">
-                AR
-              </span>
-            </div>
-          )}
+    <div className="card group hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden flex flex-col h-full">
+      <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-900">
+        <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+          <FavoriteButton productId={model.id} />
+        </div>
+        
+        {model.glb_url && (
+          <div className="absolute top-3 left-3 z-10">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/60 text-xs font-bold text-gray-900 dark:text-white backdrop-blur-md shadow-sm border border-white/20">
+              <Box className="w-3 h-3" />
+              AR
+            </span>
+          </div>
+        )}
+
+        <Link to={`/product/${model.id}`} className="block w-full h-full">
           {model.thumbnail ? (
             <img
               src={model.thumbnail}
               alt={model.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">
-              <svg
-                className="w-16 h-16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
+              <Box className="w-16 h-16 opacity-20" />
             </div>
           )}
-        </div>
-      </Link>
-      
-      <div className="p-4">
-        <Link to={`/product/${model.id}`}>
-          <h3 className="text-lg font-semibold mb-2 hover:text-primary-600 transition-colors">
-            {model.title}
-          </h3>
+          
+          {/* Overlay gradiente para mejorar legibilidad en hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </Link>
-        
-        {model.description && (
-          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-            {model.description}
-          </p>
-        )}
-        
-        {model.price && (
-          <p className="text-xl font-bold text-primary-600 mb-3">
-            ${model.price.toLocaleString()}
-          </p>
-        )}
-        
-        <div className="flex gap-2">
-          <Link
-            to={`/product/${model.id}`}
-            className="btn-secondary flex-1 text-center"
-          >
-            Ver detalles
+      </div>
+      
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="flex-grow">
+          <Link to={`/product/${model.id}`} className="group/title">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover/title:text-blue-600 dark:group-hover/title:text-blue-400 transition-colors">
+              {model.title}
+            </h3>
           </Link>
-          {model.price && (
-            <button
-              onClick={handleAddToCart}
-              className="btn-primary flex-1"
-            >
-              Agregar
-            </button>
+          
+          {model.description && (
+            <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-4">
+              {model.description}
+            </p>
           )}
-          <ARButton
-            modelUrl={model.glb_url}
-            modelTitle={model.title}
-            className="flex-1"
-          />
+        </div>
+        
+        <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
+          <div className="flex items-center justify-between mb-4">
+            {model.price ? (
+              <span className="text-xl font-extrabold text-gray-900 dark:text-white">
+                ${model.price.toLocaleString()}
+              </span>
+            ) : (
+              <span className="text-sm font-medium text-gray-500">Consultar precio</span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2">
+            {model.price && (
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 btn-primary py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all"
+              >
+                <ShoppingCart className="w-4 h-4" />
+                Agregar
+              </button>
+            )}
+            
+            {model.glb_url && (
+              <ARButton
+                modelUrl={model.glb_url}
+                modelTitle={model.title}
+                className="btn-secondary !p-2.5 rounded-xl flex-none hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors"
+              >
+                <Box className="w-5 h-5" />
+                <span className="sr-only">Ver en AR</span>
+              </ARButton>
+            )}
+          </div>
         </div>
       </div>
     </div>
