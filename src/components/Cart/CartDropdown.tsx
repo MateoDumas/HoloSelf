@@ -12,7 +12,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
 
   if (items.length === 0) {
     return (
-      <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 z-50 p-4">
+      <div className="absolute right-2 left-2 sm:left-auto sm:right-0 mt-2 w-auto sm:w-80 max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 z-50 p-4">
         <div className="flex flex-col items-center text-center space-y-3">
           <div className="w-12 h-12 rounded-full bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
             <ShoppingBag className="w-6 h-6 text-gray-400 dark:text-gray-500" />
@@ -38,7 +38,12 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
   }
 
   return (
-    <div id="cart-dropdown" role="menu" aria-label="Carrito" className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 z-50 max-h-96 overflow-y-auto">
+    <div
+      id="cart-dropdown"
+      role="menu"
+      aria-label="Carrito"
+      className="absolute right-2 left-2 sm:left-auto sm:right-0 mt-2 w-auto sm:w-80 max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 z-50 max-h-96 overflow-y-auto"
+    >
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <h3 className="font-semibold text-gray-900 dark:text-gray-100">
           Carrito ({items.length})

@@ -8,14 +8,14 @@ const Cart: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
           Carrito de Compras
         </h1>
         {items.length > 0 && (
           <button
             onClick={clearCart}
-            className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium transition-colors"
+            className="self-start sm:self-auto text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium transition-colors"
           >
             Vaciar carrito
           </button>

@@ -81,7 +81,7 @@ const ProductPage: React.FC = () => {
         Volver al catálogo
       </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {/* Viewer 3D */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden relative">
           <div className="absolute top-4 right-4 z-10">
@@ -98,7 +98,7 @@ const ProductPage: React.FC = () => {
           
           {/* Viewer Controls */}
           <div className="p-4 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => setAutoRotate(!autoRotate)}
                 className={`flex-1 py-2 px-4 rounded-xl text-sm font-medium transition-colors ${
@@ -164,7 +164,7 @@ const ProductPage: React.FC = () => {
           {model.meta?.dimensions && (
             <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-100 dark:border-gray-700">
               <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Dimensiones</h3>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
                   <span className="block text-xs text-gray-500 uppercase tracking-wide">Alto</span>
                   <span className="block text-lg font-medium text-gray-900 dark:text-white">{model.meta.dimensions.height} cm</span>

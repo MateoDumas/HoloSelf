@@ -74,7 +74,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
   return (
     <div>
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               Catálogo de Productos
@@ -95,7 +95,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
           <SearchBar onSearch={setSearchQuery} />
         </div>
 
-        <div className="mb-4 flex gap-2 items-center">
+        <div className="mb-4 flex flex-wrap gap-2 items-center">
           <label className="text-sm text-gray-600 dark:text-gray-400">Ordenar por:</label>
           <select
             value={sortBy}
