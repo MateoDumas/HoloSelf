@@ -14,7 +14,7 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
 }) => {
   const { data: allModels } = useModels(1, 100)
 
-  if (!allModels) return null
+  if (!currentModel || !allModels) return null
 
   // Encontrar productos similares por categoría o tags
   const similarProducts = allModels.models

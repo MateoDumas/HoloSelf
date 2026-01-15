@@ -181,7 +181,7 @@ const ProductPage: React.FC = () => {
             </div>
           )}
 
-          <SimilarProducts currentProductId={model.id} category={model.meta?.category || ''} />
+          <SimilarProducts currentModel={model} />
         </div>
       </div>
     </div>
