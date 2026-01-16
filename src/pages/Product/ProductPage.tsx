@@ -214,9 +214,11 @@ const ProductPage: React.FC = () => {
               </div>
             </div>
           )}
-
-          <SimilarProducts currentModel={model} />
         </div>
+      </div>
+
+      <div className="mt-12 sm:mt-16">
+        <SimilarProducts currentModel={model} />
       </div>
     </div>
   )

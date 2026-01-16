@@ -44,11 +44,11 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
   if (similarProducts.length === 0) return null
 
   return (
-    <div className="mt-12">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+    <div className="w-full">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
         {t('similar_products.title')}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {similarProducts.map((model) => (
           <ModelCard key={model.id} model={model} />
         ))}
