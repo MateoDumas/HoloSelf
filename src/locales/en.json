@@ -166,6 +166,26 @@
         "license": "License",
         "restart_tutorial": "View tutorial again"
     },
+    "legal_pages": {
+        "privacy": {
+            "title": "Privacy Policy",
+            "intro": "This project is a demo. Replace this content with your real privacy policy.",
+            "data_title": "Data collection and usage",
+            "data_text": "We do not store personal data beyond what is necessary to demonstrate the product experience."
+        },
+        "terms": {
+            "title": "Terms and Conditions",
+            "intro": "These terms are illustrative. Adapt them to your business and legal requirements.",
+            "use_title": "Use of the service",
+            "use_text": "Use this demo only for evaluation and testing purposes."
+        },
+        "license": {
+            "title": "License",
+            "intro": "Information about how this demo and its content can be used.",
+            "ownership_title": "Content and ownership",
+            "ownership_text": "All 3D models, images and brand elements are for demonstration only."
+        }
+    },
     "splash": {
         "loading": "Loading"
     },

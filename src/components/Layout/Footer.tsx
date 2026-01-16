@@ -57,24 +57,23 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Link to="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   {t('footer.privacy')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Link to="/terms" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   {t('footer.terms')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Link to="/license" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   {t('footer.license')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

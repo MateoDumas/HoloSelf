@@ -10,6 +10,9 @@ const ProductPage = lazy(() => import('./pages/Product/ProductPage'))
 const Favorites = lazy(() => import('./pages/Favorites'))
 const Cart = lazy(() => import('./pages/Cart'))
 const History = lazy(() => import('./pages/History'))
+const Privacy = lazy(() => import('./pages/Privacy'))
+const Terms = lazy(() => import('./pages/Terms'))
+const License = lazy(() => import('./pages/License'))
 
 // Base path para GitHub Pages (debe coincidir con el nombre del repositorio)
 // En Vercel, BASE_URL será '/' automáticamente
@@ -64,6 +67,9 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/history" element={<History />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/license" element={<License />} />
           </Routes>
         </Suspense>
       </Layout>
