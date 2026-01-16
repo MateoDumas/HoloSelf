@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 interface CameraControlsProps {
     onViewChange?: (view: 'front' | 'back' | 'left' | 'right' | 'top') => void
@@ -7,12 +8,14 @@ interface CameraControlsProps {
 }
 
 const CameraControls: React.FC<CameraControlsProps> = ({ onViewChange, className = '' }) => {
+    const { t } = useTranslation()
+
     const views = [
-        { name: 'Frontal', value: 'front' as const, icon: '⬆️' },
-        { name: 'Atrás', value: 'back' as const, icon: '⬇️' },
-        { name: 'Izquierda', value: 'left' as const, icon: '⬅️' },
-        { name: 'Derecha', value: 'right' as const, icon: '➡️' },
-        { name: 'Superior', value: 'top' as const, icon: '🔝' },
+        { key: 'front', value: 'front' as const, icon: '⬆️' },
+        { key: 'back', value: 'back' as const, icon: '⬇️' },
+        { key: 'left', value: 'left' as const, icon: '⬅️' },
+        { key: 'right', value: 'right' as const, icon: '➡️' },
+        { key: 'top', value: 'top' as const, icon: '🔝' },
     ]
 
     return (
@@ -24,11 +27,17 @@ const CameraControls: React.FC<CameraControlsProps> = ({ onViewChange, className
                     whileTap={{ scale: 0.95 }}
                     onClick={() => onViewChange?.(view.value)}
                     className="px-3 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
-                    title={view.name}
-                    aria-label={`Vista ${view.name.toLowerCase()}`}
+                    title={t('camera_controls.view_label', {
+                        direction: t(`camera_controls.${view.key}`).toLowerCase(),
+                    })}
+                    aria-label={t('camera_controls.view_label', {
+                        direction: t(`camera_controls.${view.key}`).toLowerCase(),
+                    })}
                 >
                     <span className="mr-1">{view.icon}</span>
-                    <span className="hidden sm:inline">{view.name}</span>
+                    <span className="hidden sm:inline">
+                        {t(`camera_controls.${view.key}`)}
+                    </span>
                 </motion.button>
             ))}
         </div>

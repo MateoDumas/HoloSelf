@@ -18,7 +18,10 @@
         "categories": "Categorías",
         "price_range": "Rango de Precio",
         "tags": "Etiquetas",
-        "reset": "Limpiar Filtros"
+        "reset": "Limpiar Filtros",
+        "clear_all": "Limpiar todo",
+        "all": "Todas",
+        "max_price": "Precio Máximo"
     },
     "sort": {
         "label": "Ordenar por:",
@@ -28,19 +31,45 @@
     },
     "product": {
         "view_details": "Ver detalles",
-        "add_to_cart": "Agregar",
+        "add_to_cart": "Agregar al Carrito",
         "view_ar": "Ver AR",
         "description": "Descripción",
-        "price": "Precio"
+        "price": "Precio",
+        "error_loading": "Error al cargar el producto",
+        "back_to_catalog": "Volver al catálogo",
+        "stop_rotation": "⏸ Detener rotación",
+        "auto_rotate": "▶ Rotar automático",
+        "dimensions": "Dimensiones",
+        "height": "Alto",
+        "width": "Ancho",
+        "depth": "Profundidad",
+        "category": "Categoría"
     },
     "cart": {
         "title": "Carrito de Compras",
         "empty": "Tu carrito está vacío",
         "checkout": "Finalizar Compra",
-        "total": "Total",
+        "total": "Total:",
         "clear": "Vaciar",
         "remove": "Eliminar",
-        "view": "Ver Carrito"
+        "view": "Ver Carrito",
+        "empty_title": "Tu carrito está vacío",
+        "empty_desc": "Añade productos desde el catálogo para verlos aquí.",
+        "go_to_catalog": "Ir al catálogo",
+        "view_cart": "Ver Carrito",
+        "add_success": "¡Producto añadido al carrito!",
+        "cleared": "Carrito vaciado",
+        "summary": "Resumen del pedido",
+        "subtotal": "Subtotal",
+        "shipping": "Envío",
+        "free": "Gratis",
+        "secure": "Transacción segura y encriptada",
+        "item_count_one": "producto",
+        "item_count_other": "productos",
+        "empty_page_title": "Tu carrito está vacío",
+        "empty_page_desc": "Parece que aún no has añadido ningún producto. Explora nuestro catálogo y encuentra algo que te guste.",
+        "decrease_quantity": "Disminuir cantidad",
+        "increase_quantity": "Aumentar cantidad"
     },
     "favorites": {
         "title": "Favoritos",
@@ -71,7 +100,14 @@
         "next": "Siguiente",
         "back": "Atrás",
         "start": "¡Comenzar!",
-        "skip": "Saltar tutorial"
+        "skip": "Omitir",
+        "welcome_title": "Bienvenido a HoloSelf",
+        "welcome_desc": "Descubre una nueva forma de comprar con nuestra tecnología 3D y Realidad Aumentada.",
+        "ar_title": "Visualización AR",
+        "ar_desc": "Prueba los productos en tu propio espacio usando la cámara de tu dispositivo.",
+        "cart_title": "Compra Fácil",
+        "cart_desc": "Añade productos al carrito y completa tu compra de forma segura y rápida.",
+        "finish": "Empezar"
     },
     "categories": {
         "all": "Todas",
@@ -80,7 +116,12 @@
         "juguetes": "Juguetes",
         "demo": "Demo",
         "moda": "Moda",
-        "electrónica": "Electrónica"
+        "electrónica": "Electrónica",
+        "furniture": "Muebles",
+        "lighting": "Iluminación",
+        "decor": "Decoración",
+        "electronics": "Electrónica",
+        "toys": "Juguetes"
     },
     "products": {
         "chair": {
@@ -108,5 +149,155 @@
             "desc": "Escritorio ejecutivo de roble con cajones laterales."
         }
     },
-    "similar_products": "Productos Similares"
+    "nav": {
+        "home": "Inicio",
+        "catalog": "Catálogo",
+        "favorites": "Favoritos",
+        "history": "Historial"
+    },
+    "footer": {
+        "about": "Experimenta el futuro del comercio electrónico con nuestra tecnología de visualización 3D y Realidad Aumentada.",
+        "explore": "Explorar",
+        "legal": "Legal",
+        "contact": "Contacto",
+        "rights": "Todos los derechos reservados.",
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "license": "Licencia",
+        "restart_tutorial": "Ver tutorial de nuevo"
+    },
+    "splash": {
+        "loading": "Cargando"
+    },
+    "home": {
+        "badge": "Nueva Colección 2026",
+        "title_line1": "Visualiza el futuro en",
+        "title_highlight": "Tu Propio Espacio",
+        "subtitle": "Descubre nuestra colección exclusiva de muebles y decoración. Usa la Realidad Aumentada para ver cómo quedan en tu hogar antes de comprar.",
+        "cta_primary": "Ver Catálogo",
+        "cta_secondary": "Demo AR",
+        "full_catalog": "Catálogo Completo",
+        "feature_models_title": "Modelos 3D Detallados",
+        "feature_models_desc": "Visualiza cada textura y detalle con nuestros modelos de alta fidelidad.",
+        "feature_ar_title": "Realidad Aumentada",
+        "feature_ar_desc": "Proyecta los productos en tu sala usando la cámara de tu móvil.",
+        "feature_secure_title": "Compra Segura",
+        "feature_secure_desc": "Proceso de compra simplificado y entregas garantizadas."
+    },
+    "favorites_page": {
+        "title": "Mis Favoritos",
+        "loading": "Cargando tus productos favoritos...",
+        "error_title": "Error al cargar tus favoritos",
+        "error_desc": "Intenta recargar la página o vuelve más tarde.",
+        "back_to_catalog": "Volver al catálogo",
+        "count_one": "{{count}} producto guardado",
+        "count_other": "{{count}} productos guardados",
+        "empty_title": "No tienes favoritos",
+        "empty_desc": "Guarda los productos que más te gusten para verlos más tarde.",
+        "explore_catalog": "Explorar catálogo"
+    },
+    "history_page": {
+        "title": "Historial de Vistas",
+        "loading": "Cargando tu historial reciente...",
+        "error_title": "Error al cargar tu historial",
+        "error_desc": "Intenta recargar la página o vuelve más tarde.",
+        "back_to_catalog": "Volver al catálogo",
+        "count_one": "{{count}} producto visitado recientemente",
+        "count_other": "{{count}} productos visitados recientemente",
+        "clear": "Borrar historial",
+        "cleared": "Historial borrado",
+        "empty_title": "Historial vacío",
+        "empty_desc": "Los productos que visites aparecerán aquí para que puedas encontrarlos fácilmente.",
+        "explore_catalog": "Explorar catálogo"
+    },
+    "catalog_page": {
+        "title": "Catálogo de Productos",
+        "count_one": "{{count}} modelo disponible",
+        "count_other": "{{count}} modelos disponibles",
+        "error_title": "Error al cargar el catálogo",
+        "error_unknown": "Error desconocido",
+        "no_models": "No hay modelos disponibles",
+        "toggle_filters_show": "Mostrar Filtros",
+        "toggle_filters_hide": "Ocultar Filtros",
+        "sort_label": "Ordenar por:",
+        "sort_name": "Nombre",
+        "sort_price_asc": "Precio: Menor a Mayor",
+        "sort_price_desc": "Precio: Mayor a Menor",
+        "empty_title": "No se encontraron productos",
+        "empty_desc": "Intenta ajustar los filtros o la búsqueda para encontrar lo que buscas.",
+        "empty_reset": "Limpiar filtros",
+        "pagination_label": "Paginación del catálogo",
+        "pagination_prev": "Anterior",
+        "pagination_next": "Siguiente",
+        "pagination_page": "Página {{current}} de {{total}}"
+    },
+    "product_card": {
+        "contact_price": "Consultar precio",
+        "add_to_cart": "Agregar",
+        "added_to_cart": "¡Producto añadido al carrito!",
+        "view_ar": "Ver en AR"
+    },
+    "accessibility": {
+        "skip_to_content": "Saltar al contenido principal",
+        "go_home": "Ir al inicio",
+        "cart": "Carrito de compras",
+        "theme_toggle": "Alternar tema"
+    },
+    "language": {
+        "switch_es": "Cambiar a Español",
+        "switch_en": "Cambiar a Inglés"
+    },
+    "favorites_button": {
+        "add": "Agregar a favoritos",
+        "remove": "Quitar de favoritos"
+    },
+    "compare": {
+        "button_label": "Comparar favoritos",
+        "modal_title": "Comparar productos",
+        "empty_hint": "Selecciona hasta 2 productos para comparar",
+        "add_product_title": "Agregar producto para comparar"
+    },
+    "search": {
+        "clear": "Limpiar búsqueda"
+    },
+    "camera_controls": {
+        "front": "Frontal",
+        "back": "Atrás",
+        "left": "Izquierda",
+        "right": "Derecha",
+        "top": "Superior",
+        "view_label": "Vista {{direction}}"
+    },
+    "viewer": {
+        "error_title": "Error al cargar el modelo 3D",
+        "error_subtitle": "Hubo un problema al visualizar este producto.",
+        "file_not_found": "El archivo del modelo no se encontró en el servidor",
+        "unknown_error": "Error desconocido",
+        "details": "Detalles técnicos",
+        "inline_error_title": "Error al cargar el modelo",
+        "url_not_provided": "URL del modelo no proporcionada",
+        "url_invalid": "URL del modelo inválida",
+        "loading": "Cargando modelo...",
+        "not_found_404": "El archivo del modelo no se encontró en el servidor (404)",
+        "access_error": "Error al acceder al modelo: {{status}}",
+        "model_alt": "Modelo 3D del producto"
+    },
+    "similar_products": {
+        "title": "Productos similares"
+    },
+    "ar": {
+        "not_supported": "AR no está disponible en este dispositivo",
+        "not_supported_with_hint": "AR no está disponible en este dispositivo. Prueba en un dispositivo móvil con soporte AR.",
+        "starting": "Iniciando AR...",
+        "error_prefix": "Error al iniciar AR",
+        "unknown_error": "Error desconocido",
+        "ios_https_required": "El modelo debe estar disponible a través de HTTPS para usar AR en iOS.",
+        "cannot_start": "No se pudo iniciar AR. Asegúrate de que el archivo esté disponible públicamente con HTTPS."
+    },
+    "share": {
+        "title": "HoloSelf - Catálogo 3D/AR",
+        "description": "Mira este increíble producto en 3D y AR",
+        "native": "Compartir",
+        "share_on": "Compartir en {{platform}}"
+    }
 }

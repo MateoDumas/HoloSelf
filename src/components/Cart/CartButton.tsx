@@ -3,12 +3,14 @@ import { useCartStore } from '@/store/useCartStore'
 import CartDropdown from './CartDropdown'
 import { ShoppingBag } from 'lucide-react'
 import { AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 const CartButton: React.FC = () => {
   const { getItemCount } = useCartStore()
   const [isOpen, setIsOpen] = useState(false)
   const itemCount = getItemCount()
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -38,7 +40,7 @@ const CartButton: React.FC = () => {
             ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
             : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
         }`}
-        aria-label="Carrito de compras"
+        aria-label={t('accessibility.cart')}
         aria-expanded={isOpen}
         aria-controls="cart-dropdown"
       >

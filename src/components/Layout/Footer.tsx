@@ -1,8 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Github, Twitter, Linkedin, Mail } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation()
+
+  const handleRestartTutorial = (e: React.MouseEvent) => {
+    e.preventDefault()
+    window.dispatchEvent(new Event('triggerOnboarding'))
+  }
+
   return (
     <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -18,49 +26,54 @@ const Footer: React.FC = () => {
               </span>
             </Link>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Experimenta el futuro del comercio electrónico con nuestra tecnología de visualización 3D y Realidad Aumentada.
+              {t('footer.about')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Explorar</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{t('footer.explore')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Catálogo
+                  {t('nav.catalog')}
                 </Link>
               </li>
               <li>
                 <Link to="/favorites" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Favoritos
+                  {t('nav.favorites')}
                 </Link>
               </li>
               <li>
                 <Link to="/history" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Historial
+                  {t('nav.history')}
                 </Link>
+              </li>
+              <li>
+                <a href="#" onClick={handleRestartTutorial} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  {t('footer.restart_tutorial')}
+                </a>
               </li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Legal</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Privacidad
+                  {t('footer.privacy')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Términos
+                  {t('footer.terms')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Licencia
+                  {t('footer.license')}
                 </a>
               </li>
             </ul>
@@ -68,7 +81,7 @@ const Footer: React.FC = () => {
 
           {/* Social */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Contacto</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{t('footer.contact')}</h3>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors">
                 <Github className="w-5 h-5" />
@@ -88,7 +101,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} HoloSelf. Todos los derechos reservados.
+            © {new Date().getFullYear()} HoloSelf. {t('footer.rights')}
           </p>
         </div>
       </div>

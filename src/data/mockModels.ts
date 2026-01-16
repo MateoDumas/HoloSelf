@@ -11,14 +11,15 @@ const carUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Asset
 export const mockModels: ModelMetadata[] = [
   {
     id: '1',
-    title: 'Silla Sheen Premium',
-    description: 'Silla de diseño con tapizado de terciopelo suave y patas doradas. Perfecta para dar un toque elegante a cualquier habitación.',
+    title: 'Sheen Premium Chair',
+    description:
+      'Designer chair with soft velvet upholstery and golden legs. Perfect for adding an elegant touch to any room.',
     glb_url: chairUrl,
     thumbnail: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&auto=format&fit=crop',
     price: 299.99,
     meta: {
-      category: 'muebles',
-      tags: ['premium', 'terciopelo', 'diseño'],
+      category: 'furniture',
+      tags: ['premium', 'velvet', 'design'],
       dimensions: {
         width: 50,
         height: 100,
@@ -31,14 +32,15 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '2',
-    title: 'Lámpara Industrial',
-    description: 'Lámpara colgante de estilo industrial con acabado metálico desgastado. Ideal para cocinas y comedores modernos.',
+    title: 'Industrial Lamp',
+    description:
+      'Industrial-style pendant lamp with distressed metal finish. Ideal for modern kitchens and dining rooms.',
     glb_url: lampUrl,
     thumbnail: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&auto=format&fit=crop',
     price: 129.99,
     meta: {
-      category: 'iluminación',
-      tags: ['industrial', 'metal', 'colgante'],
+      category: 'lighting',
+      tags: ['industrial', 'metal', 'pendant'],
       dimensions: {
         width: 30,
         height: 40,
@@ -48,14 +50,15 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '3',
-    title: 'Cámara Vintage',
-    description: 'Cámara fotográfica antigua de colección con trípode de madera. Una pieza única para amantes de la fotografía.',
+    title: 'Vintage Camera',
+    description:
+      'Antique collectible camera with wooden tripod. A unique piece for photography lovers.',
     glb_url: cameraUrl,
     thumbnail: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&auto=format&fit=crop',
     price: 599.99,
     meta: {
-      category: 'decoración',
-      tags: ['vintage', 'coleccionable', 'fotografía'],
+      category: 'decor',
+      tags: ['vintage', 'collectible', 'photography'],
       dimensions: {
         width: 40,
         height: 30,
@@ -65,13 +68,14 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '4',
-    title: 'Radio BoomBox Retro',
-    description: 'Radio portátil estilo años 80 con altavoces de alta fidelidad. Combina diseño retro con tecnología de audio moderna.',
+    title: 'Retro Boombox Radio',
+    description:
+      'Portable 80s-style radio with high-fidelity speakers. Combines retro design with modern audio technology.',
     glb_url: radioUrl,
     thumbnail: 'https://images.pexels.com/photos/18611257/pexels-photo-18611257.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 199.99,
     meta: {
-      category: 'electrónica',
+      category: 'electronics',
       tags: ['retro', 'audio', '80s'],
       dimensions: {
         width: 60,
@@ -82,14 +86,15 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '5',
-    title: 'Candelabro de Vidrio',
-    description: 'Candelabro decorativo de vidrio soplado para velas grandes. Crea un ambiente cálido y acogedor.',
+    title: 'Glass Candle Holder',
+    description:
+      'Decorative blown-glass candle holder for large candles. Creates a warm and cozy atmosphere.',
     glb_url: candleUrl,
     thumbnail: 'https://images.pexels.com/photos/698921/pexels-photo-698921.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 49.99,
     meta: {
-      category: 'decoración',
-      tags: ['vidrio', 'vela', 'hogar'],
+      category: 'decor',
+      tags: ['glass', 'candle', 'home'],
       dimensions: {
         width: 15,
         height: 25,
@@ -99,14 +104,15 @@ export const mockModels: ModelMetadata[] = [
   },
   {
     id: '6',
-    title: 'Coche Clásico de Juguete',
-    description: 'Modelo a escala de coche clásico fabricado con gran detalle. Perfecto para coleccionistas y niños.',
+    title: 'Classic Toy Car',
+    description:
+      'Scale model of a classic car crafted with great detail. Perfect for collectors and kids.',
     glb_url: carUrl,
     thumbnail: 'https://images.pexels.com/photos/11292464/pexels-photo-11292464.jpeg?auto=compress&cs=tinysrgb&w=400',
     price: 89.99,
     meta: {
-      category: 'juguetes',
-      tags: ['clásico', 'coleccionable', 'niños'],
+      category: 'toys',
+      tags: ['classic', 'collectible', 'kids'],
       dimensions: {
         width: 10,
         height: 8,

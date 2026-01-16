@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import { Toaster } from 'react-hot-toast'
 import SkipToContent from '@/components/UI/SkipToContent'
+import Onboarding from '@/components/Onboarding'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -17,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       <Footer />
+      <Onboarding />
       <Toaster 
         position="bottom-right"
         toastOptions={{

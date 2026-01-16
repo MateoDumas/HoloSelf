@@ -1,6 +1,9 @@
 /**
  * Detecta si WebXR está disponible en el navegador
  */
+import i18n from '@/i18n'
+import { toast } from 'react-hot-toast'
+
 export function isWebXRAvailable(): boolean {
   if (typeof navigator === 'undefined') return false
   return 'xr' in navigator
@@ -121,7 +124,7 @@ export function activateARQuickLook(modelUrl: string): void {
   // Verificar que la URL sea HTTPS (requerido por iOS)
   if (!url.startsWith('https://')) {
     console.error('AR Quick Look requiere HTTPS. URL proporcionada:', url)
-    alert('El modelo debe estar disponible a través de HTTPS para usar AR en iOS.')
+    toast.error(i18n.t('ar.ios_https_required'))
     return
   }
 
@@ -162,7 +165,7 @@ export function activateARQuickLook(modelUrl: string): void {
       window.open(url, '_blank')
     } catch (e) {
       console.error('No se pudo abrir AR:', e)
-      alert('No se pudo iniciar AR. Asegúrate de que el archivo esté disponible públicamente con HTTPS.')
+      toast.error(i18n.t('ar.cannot_start'))
     }
   }
   

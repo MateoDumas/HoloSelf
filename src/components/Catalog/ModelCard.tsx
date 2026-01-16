@@ -7,6 +7,7 @@ import { useCartStore } from '@/store/useCartStore'
 import { toast } from 'react-hot-toast'
 import { ShoppingCart, Box } from 'lucide-react'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 
 interface ModelCardProps {
   model: ModelMetadata
@@ -15,6 +16,7 @@ interface ModelCardProps {
 const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
   const { addItem } = useCartStore()
   const queryClient = useQueryClient()
+  const { t } = useTranslation()
 
   const prefetchModel = () => {
     queryClient.prefetchQuery({
@@ -34,7 +36,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
       glb_url: model.glb_url,
       thumbnail: model.thumbnail,
     })
-    toast.success('Añadido al carrito')
+    toast.success(t('product_card.added_to_cart'))
   }
 
   return (
@@ -104,7 +106,9 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
                 ${model.price.toLocaleString()}
               </span>
             ) : (
-              <span className="text-sm font-medium text-gray-500">Consultar precio</span>
+              <span className="text-sm font-medium text-gray-500">
+                {t('product_card.contact_price')}
+              </span>
             )}
           </div>
 
@@ -115,7 +119,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
                 className="flex-1 btn-primary py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all"
               >
                 <ShoppingCart className="w-4 h-4" />
-                Agregar
+                {t('product_card.add_to_cart')}
               </button>
             )}
             
@@ -126,7 +130,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
                 className="btn-secondary !p-2.5 rounded-xl flex-none hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors"
               >
                 <Box className="w-5 h-5" />
-                <span className="sr-only">Ver en AR</span>
+                <span className="sr-only">{t('product_card.view_ar')}</span>
               </ARButton>
             )}
           </div>

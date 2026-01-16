@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ModelMetadata } from '@/hooks/useModels'
 import Viewer from '@/components/Viewer'
 import { X as XIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 interface ModelComparatorProps {
   models: ModelMetadata[]
@@ -10,6 +11,7 @@ interface ModelComparatorProps {
 
 const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) => {
   const [selectedModels, setSelectedModels] = useState<ModelMetadata[]>(models.slice(0, 2))
+  const { t } = useTranslation()
 
   const addModel = (model: ModelMetadata) => {
     if (selectedModels.length < 2 && !selectedModels.find((m) => m.id === model.id)) {
@@ -26,7 +28,7 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-auto">
         <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center z-10">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Comparar Productos
+            {t('compare.modal_title')}
           </h2>
           <button
             onClick={onClose}
@@ -40,7 +42,7 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
           {selectedModels.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Selecciona hasta 2 productos para comparar
+                {t('compare.empty_hint')}
               </p>
             </div>
           ) : (
@@ -69,7 +71,9 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
                   <div className="space-y-2">
                     {model.price && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">Precio:</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          {t('product.price')}:
+                        </span>
                         <span className="font-semibold text-primary-600 dark:text-primary-400">
                           ${model.price.toLocaleString()}
                         </span>
@@ -77,7 +81,9 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
                     )}
                     {model.meta?.dimensions && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">Dimensiones:</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          {t('product.dimensions')}:
+                        </span>
                         <span className="text-gray-900 dark:text-gray-100">
                           {model.meta.dimensions.width} × {model.meta.dimensions.height} × {model.meta.dimensions.depth} cm
                         </span>
@@ -85,7 +91,9 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
                     )}
                     {model.meta?.category && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">Categoría:</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          {t('product.category')}:
+                        </span>
                         <span className="text-gray-900 dark:text-gray-100 capitalize">
                           {model.meta.category}
                         </span>
@@ -100,7 +108,7 @@ const ModelComparator: React.FC<ModelComparatorProps> = ({ models, onClose }) =>
           {selectedModels.length < 2 && (
             <div className="mt-6">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Agregar producto para comparar
+                {t('compare.add_product_title')}
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {models

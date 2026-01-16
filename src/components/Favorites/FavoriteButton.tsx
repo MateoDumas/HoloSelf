@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
+import { useTranslation } from 'react-i18next'
 
 interface FavoriteButtonProps {
   productId: string
@@ -11,6 +12,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   className = '',
 }) => {
   const { isFavorite, toggleFavorite } = useFavoritesStore()
+  const { t } = useTranslation()
 
   const favorite = isFavorite(productId)
 
@@ -26,7 +28,11 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
           ? 'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400'
           : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
       } ${className}`}
-      aria-label={favorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+      aria-label={
+        favorite
+          ? t('favorites_button.remove')
+          : t('favorites_button.add')
+      }
     >
       <svg
         className="w-5 h-5"

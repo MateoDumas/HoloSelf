@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface SkeletonProps {
     className?: string
@@ -9,6 +10,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
     className = '',
     variant = 'rectangular'
 }) => {
+    const { t } = useTranslation()
     const baseClasses = 'animate-pulse bg-gray-200 dark:bg-gray-700'
 
     const variantClasses = {
@@ -20,7 +22,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
     return (
         <div
             className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-            aria-label="Loading..."
+            aria-label={t('loading')}
         />
     )
 }

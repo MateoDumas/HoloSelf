@@ -2,6 +2,7 @@ import React from 'react'
 import { ModelMetadata } from '@/hooks/useModels'
 import { useModels } from '@/hooks/useModels'
 import ModelCard from '@/components/Catalog/ModelCard'
+import { useTranslation } from 'react-i18next'
 
 interface SimilarProductsProps {
   currentModel: ModelMetadata
@@ -13,6 +14,7 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
   limit = 4,
 }) => {
   const { data: allModels } = useModels(1, 100)
+  const { t } = useTranslation()
 
   if (!currentModel || !allModels) return null
 
@@ -44,7 +46,7 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
   return (
     <div className="mt-12">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-        Productos Similares
+        {t('similar_products.title')}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {similarProducts.map((model) => (

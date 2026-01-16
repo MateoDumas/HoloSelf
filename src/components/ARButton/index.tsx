@@ -6,6 +6,8 @@ import {
   isAndroidARAvailable,
   activateARQuickLook,
 } from '@/libs/arHelpers'
+import { useTranslation } from 'react-i18next'
+import { toast } from 'react-hot-toast'
 
 interface ARButtonProps {
   modelUrl: string
@@ -23,10 +25,11 @@ const ARButton: React.FC<ARButtonProps> = ({
   const { arMethod, isSupported, startARSession } = useXR()
   const [isLoading, setIsLoading] = useState(false)
   const [modelViewerId] = useState(() => `model-viewer-${Math.random().toString(36).substr(2, 9)}`)
+  const { t } = useTranslation()
 
   const handleARClick = async () => {
     if (!isSupported) {
-      alert('AR no está disponible en este dispositivo')
+      toast.error(t('ar.not_supported'))
       return
     }
 
@@ -100,7 +103,7 @@ const ARButton: React.FC<ARButtonProps> = ({
           if (isAndroidARAvailable()) {
             window.location.href = getSceneViewerURL(modelUrl, modelTitle)
           } else {
-            alert('AR no está disponible en este dispositivo. Prueba en un dispositivo móvil con soporte AR.')
+            toast.error(t('ar.not_supported_with_hint'))
           }
         }
       } else if (arMethod === 'android-ar' || isAndroidARAvailable()) {
@@ -117,7 +120,11 @@ const ARButton: React.FC<ARButtonProps> = ({
       // Solo mostrar error si no es un error esperado
       if (error?.name !== 'NotSupportedError') {
         console.warn('Error iniciando AR:', error)
-        alert(`Error al iniciar AR: ${error.message || 'Error desconocido'}`)
+        toast.error(
+          `${t('ar.error_prefix')}: ${
+            error.message || t('ar.unknown_error')
+          }`,
+        )
       }
     } finally {
       setIsLoading(false)
@@ -156,7 +163,7 @@ const ARButton: React.FC<ARButtonProps> = ({
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             />
           </svg>
-          Iniciando AR...
+          {t('ar.starting')}
         </>
       ) : (
         children || (
@@ -180,7 +187,7 @@ const ARButton: React.FC<ARButtonProps> = ({
                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
               />
             </svg>
-            Ver en AR
+            {t('product_card.view_ar')}
           </>
         )
       )}

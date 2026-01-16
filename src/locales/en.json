@@ -18,7 +18,10 @@
         "categories": "Categories",
         "price_range": "Price Range",
         "tags": "Tags",
-        "reset": "Reset Filters"
+        "reset": "Reset Filters",
+        "clear_all": "Clear all",
+        "all": "All",
+        "max_price": "Max Price"
     },
     "sort": {
         "label": "Sort by:",
@@ -31,16 +34,42 @@
         "add_to_cart": "Add to Cart",
         "view_ar": "View AR",
         "description": "Description",
-        "price": "Price"
+        "price": "Price",
+        "error_loading": "Error loading product",
+        "back_to_catalog": "Back to catalog",
+        "stop_rotation": "⏸ Stop rotation",
+        "auto_rotate": "▶ Auto rotate",
+        "dimensions": "Dimensions",
+        "height": "Height",
+        "width": "Width",
+        "depth": "Depth",
+        "category": "Category"
     },
     "cart": {
         "title": "Shopping Cart",
         "empty": "Your cart is empty",
         "checkout": "Checkout",
-        "total": "Total",
+        "total": "Total:",
         "clear": "Clear",
         "remove": "Remove",
-        "view": "View Cart"
+        "view": "View Cart",
+        "empty_title": "Your cart is empty",
+        "empty_desc": "Add products from the catalog to see them here.",
+        "go_to_catalog": "Go to catalog",
+        "view_cart": "View Cart",
+        "add_success": "Product added to cart!",
+        "cleared": "Cart cleared",
+        "summary": "Order Summary",
+        "subtotal": "Subtotal",
+        "shipping": "Shipping",
+        "free": "Free",
+        "secure": "Secure and encrypted transaction",
+        "item_count_one": "item",
+        "item_count_other": "items",
+        "empty_page_title": "Your cart is empty",
+        "empty_page_desc": "It looks like you haven't added any products yet. Explore our catalog and find something you like.",
+        "decrease_quantity": "Decrease quantity",
+        "increase_quantity": "Increase quantity"
     },
     "favorites": {
         "title": "Favorites",
@@ -71,7 +100,14 @@
         "next": "Next",
         "back": "Back",
         "start": "Get Started!",
-        "skip": "Skip tutorial"
+        "skip": "Skip",
+        "welcome_title": "Welcome to HoloSelf",
+        "welcome_desc": "Discover a new way to shop with our 3D and Augmented Reality technology.",
+        "ar_title": "AR Visualization",
+        "ar_desc": "Try products in your own space using your device's camera.",
+        "cart_title": "Easy Shopping",
+        "cart_desc": "Add products to cart and complete your purchase securely and quickly.",
+        "finish": "Start"
     },
     "categories": {
         "all": "All",
@@ -80,7 +116,12 @@
         "juguetes": "Toys",
         "demo": "Demo",
         "moda": "Fashion",
-        "electrónica": "Electronics"
+        "electrónica": "Electronics",
+        "furniture": "Furniture",
+        "lighting": "Lighting",
+        "decor": "Decoration",
+        "electronics": "Electronics",
+        "toys": "Toys"
     },
     "products": {
         "chair": {
@@ -108,5 +149,155 @@
             "desc": "Executive desk made of oak with side drawers."
         }
     },
-    "similar_products": "Similar Products"
+    "nav": {
+        "home": "Home",
+        "catalog": "Catalog",
+        "favorites": "Favorites",
+        "history": "History"
+    },
+    "footer": {
+        "about": "Experience the future of e-commerce with our 3D visualization and Augmented Reality technology.",
+        "explore": "Explore",
+        "legal": "Legal",
+        "contact": "Contact",
+        "rights": "All rights reserved.",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "license": "License",
+        "restart_tutorial": "View tutorial again"
+    },
+    "splash": {
+        "loading": "Loading"
+    },
+    "home": {
+        "badge": "New Collection 2026",
+        "title_line1": "Visualize the future in",
+        "title_highlight": "Your Own Space",
+        "subtitle": "Discover our exclusive collection of furniture and decor. Use Augmented Reality to see how everything looks in your home before you buy.",
+        "cta_primary": "View Catalog",
+        "cta_secondary": "AR Demo",
+        "full_catalog": "Full Catalog",
+        "feature_models_title": "Detailed 3D Models",
+        "feature_models_desc": "See every texture and detail with our high‑fidelity 3D models.",
+        "feature_ar_title": "Augmented Reality",
+        "feature_ar_desc": "Place products in your room using your phone's camera.",
+        "feature_secure_title": "Secure Purchase",
+        "feature_secure_desc": "Simplified checkout and reliable deliveries."
+    },
+    "favorites_page": {
+        "title": "My Favorites",
+        "loading": "Loading your favorite products...",
+        "error_title": "Error loading your favorites",
+        "error_desc": "Try reloading the page or come back later.",
+        "back_to_catalog": "Back to catalog",
+        "count_one": "{{count}} saved product",
+        "count_other": "{{count}} saved products",
+        "empty_title": "No favorites yet",
+        "empty_desc": "Save the products you like the most to view them later.",
+        "explore_catalog": "Browse catalog"
+    },
+    "history_page": {
+        "title": "View History",
+        "loading": "Loading your recent views...",
+        "error_title": "Error loading your history",
+        "error_desc": "Try reloading the page or come back later.",
+        "back_to_catalog": "Back to catalog",
+        "count_one": "{{count}} product viewed recently",
+        "count_other": "{{count}} products viewed recently",
+        "clear": "Clear history",
+        "cleared": "History cleared",
+        "empty_title": "Empty history",
+        "empty_desc": "Products you visit will appear here so you can find them easily.",
+        "explore_catalog": "Browse catalog"
+    },
+    "catalog_page": {
+        "title": "Product Catalog",
+        "count_one": "{{count}} model available",
+        "count_other": "{{count}} models available",
+        "error_title": "Error loading catalog",
+        "error_unknown": "Unknown error",
+        "no_models": "No models available",
+        "toggle_filters_show": "Show Filters",
+        "toggle_filters_hide": "Hide Filters",
+        "sort_label": "Sort by:",
+        "sort_name": "Name",
+        "sort_price_asc": "Price: Low to High",
+        "sort_price_desc": "Price: High to Low",
+        "empty_title": "No products found",
+        "empty_desc": "Try adjusting the filters or search to find what you need.",
+        "empty_reset": "Reset filters",
+        "pagination_label": "Catalog pagination",
+        "pagination_prev": "Previous",
+        "pagination_next": "Next",
+        "pagination_page": "Page {{current}} of {{total}}"
+    },
+    "product_card": {
+        "contact_price": "Contact for price",
+        "add_to_cart": "Add to Cart",
+        "added_to_cart": "Product added to cart!",
+        "view_ar": "View in AR"
+    },
+    "accessibility": {
+        "skip_to_content": "Skip to main content",
+        "go_home": "Go to home",
+        "cart": "Shopping cart",
+        "theme_toggle": "Toggle theme"
+    },
+    "language": {
+        "switch_es": "Switch to Spanish",
+        "switch_en": "Switch to English"
+    },
+    "favorites_button": {
+        "add": "Add to favorites",
+        "remove": "Remove from favorites"
+    },
+    "compare": {
+        "button_label": "Compare favorites",
+        "modal_title": "Compare products",
+        "empty_hint": "Select up to 2 products to compare",
+        "add_product_title": "Add product to compare"
+    },
+    "search": {
+        "clear": "Clear search"
+    },
+    "camera_controls": {
+        "front": "Front",
+        "back": "Back",
+        "left": "Left",
+        "right": "Right",
+        "top": "Top",
+        "view_label": "{{direction}} view"
+    },
+    "viewer": {
+        "error_title": "Error loading 3D model",
+        "error_subtitle": "There was a problem displaying this product.",
+        "file_not_found": "The model file was not found on the server",
+        "unknown_error": "Unknown error",
+        "details": "Technical details",
+        "inline_error_title": "Error loading model",
+        "url_not_provided": "Model URL not provided",
+        "url_invalid": "Invalid model URL",
+        "loading": "Loading model...",
+        "not_found_404": "The model file was not found on the server (404)",
+        "access_error": "Error accessing model: {{status}}",
+        "model_alt": "3D model of the product"
+    },
+    "similar_products": {
+        "title": "Similar products"
+    },
+    "ar": {
+        "not_supported": "AR is not available on this device",
+        "not_supported_with_hint": "AR is not available on this device. Try a mobile device with AR support.",
+        "starting": "Starting AR...",
+        "error_prefix": "Error starting AR",
+        "unknown_error": "Unknown error",
+        "ios_https_required": "The model must be available over HTTPS to use AR on iOS.",
+        "cannot_start": "Could not start AR. Make sure the file is publicly available over HTTPS."
+    },
+    "share": {
+        "title": "HoloSelf - 3D/AR Catalog",
+        "description": "Check out this amazing product in 3D and AR",
+        "native": "Share",
+        "share_on": "Share on {{platform}}"
+    }
 }

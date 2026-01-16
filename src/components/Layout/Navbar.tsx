@@ -5,8 +5,11 @@ import { History, Heart, Box } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
 import CartButton from '@/components/Cart/CartButton'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
+import LanguageSelector from '@/components/UI/LanguageSelector'
+import { useTranslation } from 'react-i18next'
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation()
   const { favorites } = useFavoritesStore()
   const location = useLocation()
   
@@ -23,17 +26,16 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group" aria-label="Ir al inicio">
             <div className="bg-blue-600 p-1.5 rounded-lg group-hover:scale-110 transition-transform">
-              <Box className="w-6 h-6 text-white" />
+              <Box className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+              <span className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
                 HoloSelf
               </span>
             </div>
           </Link>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               to="/history"
               className={`relative p-2 rounded-xl transition-all duration-200 ${
@@ -41,7 +43,7 @@ const Navbar: React.FC = () => {
                   ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
               }`}
-              title="Historial"
+              title={t('nav.history')}
               aria-current={isActive('/history') ? 'page' : undefined}
             >
               <History className="w-5 h-5" />
@@ -54,7 +56,7 @@ const Navbar: React.FC = () => {
                   ? 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400'
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
               }`}
-              title="Favoritos"
+              title={t('nav.favorites')}
               aria-current={isActive('/favorites') ? 'page' : undefined}
             >
               <Heart className="w-5 h-5" />
@@ -67,6 +69,7 @@ const Navbar: React.FC = () => {
 
             <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
 
+            <LanguageSelector />
             <CartButton />
             <ThemeToggle />
           </div>

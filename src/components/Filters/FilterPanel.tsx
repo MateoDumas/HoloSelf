@@ -1,5 +1,6 @@
 import React from 'react'
 import { ModelMetadata } from '@/hooks/useModels'
+import { useTranslation } from 'react-i18next'
 
 interface FilterPanelProps {
   models: ModelMetadata[]
@@ -22,6 +23,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   onPriceRangeChange,
   onReset,
 }) => {
+  const { t } = useTranslation()
+
   // Obtener categorías únicas
   const categories = Array.from(
     new Set(models.map((m) => m.meta?.category).filter(Boolean))
@@ -53,20 +56,20 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
               d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
             />
           </svg>
-          Filtros
+          {t('filters.title')}
         </h3>
         <button
           onClick={onReset}
           className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:underline transition-colors"
         >
-          Limpiar todo
+          {t('filters.clear_all')}
         </button>
       </div>
 
       {/* Categorías */}
       <div className="space-y-3">
         <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-          Categoría
+          {t('filters.category')}
           <span className="text-xs font-normal text-gray-500">({categories.length + 1})</span>
         </h4>
         <div className="space-y-2">
@@ -82,7 +85,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
               <div className="w-5 h-5 border-2 border-gray-300 dark:border-gray-600 rounded-full peer-checked:border-blue-600 peer-checked:border-[6px] transition-all bg-white dark:bg-gray-800 peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-gray-800"></div>
             </div>
             <span className="ml-3 text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors">
-              Todas
+              {t('filters.all')}
             </span>
           </label>
           {categories.map((category) => (
@@ -98,7 +101,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                 <div className="w-5 h-5 border-2 border-gray-300 dark:border-gray-600 rounded-full peer-checked:border-blue-600 peer-checked:border-[6px] transition-all bg-white dark:bg-gray-800 peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-gray-800"></div>
               </div>
               <span className="ml-3 text-sm text-gray-600 dark:text-gray-400 capitalize group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors">
-                {category}
+                {t(`categories.${category.toLowerCase()}`, category)}
               </span>
             </label>
           ))}
@@ -111,7 +114,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {uniqueTags.length > 0 && (
         <div className="space-y-3">
           <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-            Etiquetas
+            {t('filters.tags')}
             <span className="text-xs font-normal text-gray-500">({uniqueTags.length})</span>
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -147,7 +150,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-            Precio Máximo
+            {t('filters.max_price')}
           </h4>
           <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
             ${priceRange[1].toLocaleString()}

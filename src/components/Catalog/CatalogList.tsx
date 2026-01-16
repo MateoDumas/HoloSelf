@@ -5,6 +5,7 @@ import ModelCard from './ModelCard'
 import SearchBar from '@/components/Search/SearchBar'
 import FilterPanel from '@/components/Filters/FilterPanel'
 import SkeletonLoader from '@/components/UI/SkeletonLoader'
+import { useTranslation } from 'react-i18next'
 
 interface CatalogListProps {
   page?: number
@@ -18,6 +19,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
   const [currentPage, setCurrentPage] = useState(initialPage)
   const { data, isLoading, error } = useModels(currentPage, pageSize)
   const [showFilters, setShowFilters] = useState(false)
+  const { t } = useTranslation()
 
   const {
     searchQuery,
@@ -50,9 +52,11 @@ const CatalogList: React.FC<CatalogListProps> = ({
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <p className="text-red-600 mb-2">Error al cargar el catálogo</p>
+          <p className="text-red-600 mb-2">{t('catalog_page.error_title')}</p>
           <p className="text-sm text-gray-600">
-            {error instanceof Error ? error.message : 'Error desconocido'}
+            {error instanceof Error
+              ? error.message
+              : t('catalog_page.error_unknown')}
           </p>
         </div>
       </div>
@@ -63,7 +67,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <p className="text-gray-600">No hay modelos disponibles</p>
+          <p className="text-gray-600">{t('catalog_page.no_models')}</p>
         </div>
       </div>
     )
@@ -76,35 +80,48 @@ const CatalogList: React.FC<CatalogListProps> = ({
       <div className="mb-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Catálogo de Productos
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {t('catalog_page.title')}
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 mt-1">
-              {displayModels.length} {displayModels.length === 1 ? 'modelo' : 'modelos'} disponibles
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-1">
+              {t(
+                displayModels.length === 1
+                  ? 'catalog_page.count_one'
+                  : 'catalog_page.count_other',
+                { count: displayModels.length },
+              )}
             </p>
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="btn-secondary"
           >
-            {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
+            {showFilters
+              ? t('catalog_page.toggle_filters_hide')
+              : t('catalog_page.toggle_filters_show')}
           </button>
         </div>
 
         <div className="mb-4">
-          <SearchBar onSearch={setSearchQuery} />
+          <SearchBar onSearch={setSearchQuery} initialQuery={searchQuery} />
         </div>
 
         <div className="mb-4 flex flex-wrap gap-2 items-center">
-          <label className="text-sm text-gray-600 dark:text-gray-400">Ordenar por:</label>
+          <label className="text-sm text-gray-600 dark:text-gray-400">
+            {t('catalog_page.sort_label')}
+          </label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
             className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
           >
-            <option value="name">Nombre</option>
-            <option value="price-asc">Precio: Menor a Mayor</option>
-            <option value="price-desc">Precio: Mayor a Menor</option>
+            <option value="name">{t('catalog_page.sort_name')}</option>
+            <option value="price-asc">
+              {t('catalog_page.sort_price_asc')}
+            </option>
+            <option value="price-desc">
+              {t('catalog_page.sort_price_desc')}
+            </option>
           </select>
         </div>
       </div>
@@ -138,27 +155,26 @@ const CatalogList: React.FC<CatalogListProps> = ({
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
-                No se encontraron productos
+                {t('catalog_page.empty_title')}
               </h3>
               <p className="text-gray-500 dark:text-gray-400 mb-6 max-w-sm mx-auto">
-                Intenta ajustar los filtros o la búsqueda para encontrar lo que buscas.
+                {t('catalog_page.empty_desc')}
               </p>
               <button
                 onClick={resetFilters}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-blue-700 bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/50 transition-colors"
               >
-                Limpiar filtros
+                {t('catalog_page.empty_reset')}
               </button>
             </div>
           )}
         </div>
       </div>
       
-      {/* Paginación accesible */}
       {data.total > pageSize && (
         <nav
           className="mt-8 flex justify-center items-center gap-3"
-          aria-label="Paginación del catálogo"
+          aria-label={t('catalog_page.pagination_label')}
         >
           <button
             type="button"
@@ -167,10 +183,13 @@ const CatalogList: React.FC<CatalogListProps> = ({
             aria-disabled={currentPage === 1}
             className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Anterior
+            {t('catalog_page.pagination_prev')}
           </button>
           <span className="px-4 py-2 text-gray-700 dark:text-gray-300 text-sm">
-            Página {currentPage} de {Math.ceil(data.total / pageSize)}
+            {t('catalog_page.pagination_page', {
+              current: currentPage,
+              total: Math.ceil(data.total / pageSize),
+            })}
           </span>
           <button
             type="button"
@@ -183,7 +202,7 @@ const CatalogList: React.FC<CatalogListProps> = ({
             aria-disabled={currentPage >= Math.ceil(data.total / pageSize)}
             className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Siguiente
+            {t('catalog_page.pagination_next')}
           </button>
         </nav>
       )}

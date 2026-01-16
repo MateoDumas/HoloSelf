@@ -1,15 +1,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Box, Smartphone } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation()
+
   const scrollToCatalog = () => {
     const catalog = document.getElementById('catalog')
     catalog?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-gray-900 pt-16 pb-32">
+    <div className="relative overflow-hidden bg-white dark:bg-gray-900 pt-16 pb-20 md:pt-20 md:pb-32">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-blue-500/10 rounded-full blur-3xl" />
@@ -23,37 +26,37 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 mb-6">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 mb-4 sm:mb-6">
               <span className="flex h-2 w-2 rounded-full bg-blue-600 mr-2 animate-pulse"></span>
-              Nueva Colección 2026
+              {t('home.badge')}
             </span>
-            
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-8">
-              Visualiza el futuro en <br />
+
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-6 sm:mb-8">
+              {t('home.title_line1')}{' '}
+              <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
-                Tu Propio Espacio
+                {t('home.title_highlight')}
               </span>
             </h1>
-            
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">
-              Descubre nuestra colección exclusiva de muebles y decoración. 
-              Usa la Realidad Aumentada para ver cómo quedan en tu hogar antes de comprar.
+
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 sm:mb-10 leading-relaxed">
+              {t('home.subtitle')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <button
                 onClick={scrollToCatalog}
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all hover:scale-105 shadow-lg shadow-blue-500/30"
+                className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-transparent text-base sm:text-lg font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all hover:scale-105 shadow-lg shadow-blue-500/30 w-full sm:w-auto"
               >
-                Ver Catálogo
+                {t('home.cta_primary')}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </button>
-              
+
               <button
-                className="inline-flex items-center justify-center px-8 py-4 border border-gray-200 dark:border-gray-700 text-lg font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-gray-200 dark:border-gray-700 text-base sm:text-lg font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all w-full sm:w-auto"
               >
                 <Smartphone className="mr-2 w-5 h-5" />
-                Demo AR
+                {t('home.cta_secondary')}
               </button>
             </div>
           </motion.div>
@@ -63,24 +66,24 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20"
           >
             {[
               {
                 icon: <Box className="w-6 h-6 text-blue-600" />,
-                title: "Modelos 3D Detallados",
-                desc: "Visualiza cada textura y detalle con nuestros modelos de alta fidelidad."
+                title: t('home.feature_models_title'),
+                desc: t('home.feature_models_desc'),
               },
               {
                 icon: <Smartphone className="w-6 h-6 text-indigo-600" />,
-                title: "Realidad Aumentada",
-                desc: "Proyecta los productos en tu sala usando la cámara de tu móvil."
+                title: t('home.feature_ar_title'),
+                desc: t('home.feature_ar_desc'),
               },
               {
                 icon: <ArrowRight className="w-6 h-6 text-purple-600" />,
-                title: "Compra Segura",
-                desc: "Proceso de compra simplificado y entregas garantizadas."
-              }
+                title: t('home.feature_secure_title'),
+                desc: t('home.feature_secure_desc'),
+              },
             ].map((feature, idx) => (
               <div key={idx} className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-100 dark:border-gray-700 hover:border-blue-500/50 transition-colors">
                 <div className="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-4 mx-auto">

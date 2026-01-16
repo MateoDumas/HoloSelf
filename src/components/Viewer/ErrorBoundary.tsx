@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
+import i18n from '@/i18n'
 
 interface Props {
     children: ReactNode
@@ -44,19 +45,24 @@ class ErrorBoundary extends Component<Props, State> {
                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                         />
                     </svg>
-                    <h3 className="text-lg font-medium mb-1">Error al cargar el modelo 3D</h3>
-                    <p className="text-sm mb-3">Hubo un problema al visualizar este producto.</p>
+                    <h3 className="text-lg font-medium mb-1">
+                        {i18n.t('viewer.error_title')}
+                    </h3>
+                    <p className="text-sm mb-3">
+                        {i18n.t('viewer.error_subtitle')}
+                    </p>
                     {this.state.error && (
                         <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
                             {this.state.error.message?.includes('404')
-                                ? 'El archivo del modelo no se encontró en el servidor'
-                                : this.state.error.message || 'Error desconocido'}
+                                ? i18n.t('viewer.file_not_found')
+                                : this.state.error.message ||
+                                  i18n.t('viewer.unknown_error')}
                         </p>
                     )}
                     {(import.meta.env.DEV || import.meta.env.MODE === 'development') && this.state.error && (
                         <details className="mt-4 text-xs text-left max-w-full">
                             <summary className="cursor-pointer text-gray-600 dark:text-gray-400 mb-2">
-                                Detalles técnicos
+                                {i18n.t('viewer.details')}
                             </summary>
                             <pre className="p-2 bg-gray-200 dark:bg-gray-900 rounded text-xs overflow-auto max-w-full">
                                 {this.state.error.stack || this.state.error.message}

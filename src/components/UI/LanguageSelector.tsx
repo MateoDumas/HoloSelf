@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 const LanguageSelector: React.FC = () => {
-    const { i18n } = useTranslation()
+    const { t, i18n } = useTranslation()
 
     const changeLanguage = (lng: string) => {
         i18n.changeLanguage(lng)
@@ -16,7 +16,7 @@ const LanguageSelector: React.FC = () => {
                         ? 'bg-white dark:bg-gray-600 text-primary-600 dark:text-primary-400 shadow-sm'
                         : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
                     }`}
-                aria-label="Cambiar a Español"
+                aria-label={t('language.switch_es')}
             >
                 ES
             </button>
@@ -26,7 +26,7 @@ const LanguageSelector: React.FC = () => {
                         ? 'bg-white dark:bg-gray-600 text-primary-600 dark:text-primary-400 shadow-sm'
                         : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
                     }`}
-                aria-label="Switch to English"
+                aria-label={t('language.switch_en')}
             >
                 EN
             </button>

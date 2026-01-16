@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface SearchBarProps {
   onSearch: (query: string) => void
   placeholder?: string
+  initialQuery?: string
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
-  placeholder = 'Buscar productos...',
+  placeholder,
+  initialQuery = '',
 }) => {
-  const [query, setQuery] = useState('')
+  const { t } = useTranslation()
+  const [query, setQuery] = useState(initialQuery)
   const [isFirstChange, setIsFirstChange] = useState(true)
+  const effectivePlaceholder = placeholder ?? t('search_placeholder')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -44,7 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           type="text"
           value={query}
           onChange={handleChange}
-          placeholder={placeholder}
+          placeholder={effectivePlaceholder}
           className="w-full px-4 py-3 pl-10 pr-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-200 shadow-sm hover:shadow-md"
         />
         <svg
@@ -69,7 +74,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               onSearch('')
             }}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-            aria-label="Limpiar búsqueda"
+            aria-label={t('search.clear')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

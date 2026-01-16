@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface ModelViewerARProps {
   modelUrl: string
@@ -15,6 +16,7 @@ const ModelViewerAR: React.FC<ModelViewerARProps> = ({
   modelTitle,
   onActivate,
 }) => {
+  const { t } = useTranslation()
   const modelViewerRef = useRef<any>(null)
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const ModelViewerAR: React.FC<ModelViewerARProps> = ({
     <model-viewer
       ref={modelViewerRef}
       src={modelUrl}
-      alt={modelTitle || 'Modelo 3D'}
+      alt={modelTitle || t('viewer.model_alt')}
       ar
       ar-modes="quick-look scene-viewer webxr"
       camera-controls
