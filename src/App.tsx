@@ -13,6 +13,7 @@ const History = lazy(() => import('./pages/History'))
 const Privacy = lazy(() => import('./pages/Privacy'))
 const Terms = lazy(() => import('./pages/Terms'))
 const License = lazy(() => import('./pages/License'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Base path para GitHub Pages (debe coincidir con el nombre del repositorio)
 // En Vercel, BASE_URL será '/' automáticamente
@@ -70,6 +71,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/license" element={<License />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Layout>

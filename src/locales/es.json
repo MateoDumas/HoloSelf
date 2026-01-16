@@ -186,6 +186,11 @@
             "ownership_text": "Todos los modelos 3D, imágenes y elementos de marca son solo para demostración."
         }
     },
+    "not_found": {
+        "title": "Página no encontrada",
+        "description": "La página que buscas no existe o fue movida.",
+        "back_home": "Volver al inicio"
+    },
     "splash": {
         "loading": "Cargando"
     },
@@ -196,7 +201,7 @@
         "subtitle": "Descubre nuestra colección exclusiva de muebles y decoración. Usa la Realidad Aumentada para ver cómo quedan en tu hogar antes de comprar.",
         "cta_primary": "Ver Catálogo",
         "cta_secondary": "Demo AR",
-        "full_catalog": "Catálogo Completo",
+        "full_catalog": "Explorá el catálogo completo",
         "feature_models_title": "Modelos 3D Detallados",
         "feature_models_desc": "Visualiza cada textura y detalle con nuestros modelos de alta fidelidad.",
         "feature_ar_title": "Realidad Aumentada",

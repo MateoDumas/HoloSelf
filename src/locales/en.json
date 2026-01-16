@@ -186,6 +186,11 @@
             "ownership_text": "All 3D models, images and brand elements are for demonstration only."
         }
     },
+    "not_found": {
+        "title": "Page not found",
+        "description": "The page you are looking for does not exist or was moved.",
+        "back_home": "Go back to home"
+    },
     "splash": {
         "loading": "Loading"
     },
@@ -196,7 +201,7 @@
         "subtitle": "Discover our exclusive collection of furniture and decor. Use Augmented Reality to see how everything looks in your home before you buy.",
         "cta_primary": "View Catalog",
         "cta_secondary": "AR Demo",
-        "full_catalog": "Full Catalog",
+        "full_catalog": "Explore the full catalog",
         "feature_models_title": "Detailed 3D Models",
         "feature_models_desc": "See every texture and detail with our high‑fidelity 3D models.",
         "feature_ar_title": "Augmented Reality",

@@ -44,20 +44,24 @@ const Hero: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={scrollToCatalog}
-                className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-transparent text-base sm:text-lg font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all hover:scale-105 shadow-lg shadow-blue-500/30 w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-transparent text-base sm:text-lg font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all shadow-lg shadow-blue-500/30 w-full sm:w-auto"
               >
                 {t('home.cta_primary')}
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
+              </motion.button>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-gray-200 dark:border-gray-700 text-base sm:text-lg font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all w-full sm:w-auto"
               >
                 <Smartphone className="mr-2 w-5 h-5" />
                 {t('home.cta_secondary')}
-              </button>
+              </motion.button>
             </div>
           </motion.div>
 
