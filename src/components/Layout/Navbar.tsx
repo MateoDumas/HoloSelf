@@ -21,10 +21,14 @@ const Navbar: React.FC = () => {
       animate={{ y: 0 }}
       className="sticky top-0 z-50 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group" aria-label="Ir al inicio">
+          <Link
+            to="/"
+            className="flex items-center gap-2 group"
+            aria-label={t('accessibility.go_home')}
+          >
             <div className="bg-blue-600 p-1.5 rounded-lg group-hover:scale-110 transition-transform">
               <Box className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
@@ -35,10 +39,10 @@ const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             <Link
               to="/history"
-              className={`relative p-2 rounded-xl transition-all duration-200 ${
+              className={`relative p-1.5 sm:p-2 rounded-xl transition-all duration-200 ${
                 isActive('/history')
                   ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
@@ -51,7 +55,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/favorites"
-              className={`relative p-2 rounded-xl transition-all duration-200 ${
+              className={`relative p-1.5 sm:p-2 rounded-xl transition-all duration-200 ${
                 isActive('/favorites')
                   ? 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400'
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
